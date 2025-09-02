@@ -1,0 +1,65 @@
+{
+  "Data": {
+    "1": {
+      "Name": "Main Editor",
+      "Tags": [],
+      "Active": true,
+      "Index": 1,
+      "Type": 0,
+      "PlayerIdentifier": {
+        "Guid": "cd2a421f-beef-4df2-b542-0fcb1c766920"
+      },
+      "TypeDependentPlayerInfo": {
+        "VirtualProjectIdentifier": null
+      },
+      "MultiplayerRole": 3
+    },
+    "2": {
+      "Name": "Player 2",
+      "Tags": [],
+      "Active": true,
+      "Index": 2,
+      "Type": 1,
+      "PlayerIdentifier": {
+        "Guid": "b5665f6d-3516-4018-a9bd-59b219d25565"
+      },
+      "TypeDependentPlayerInfo": {
+        "VirtualProjectIdentifier": {
+          "m_Id": "4ac3c16b",
+          "m_Prefix": "mppm"
+        }
+      },
+      "MultiplayerRole": 3
+    },
+    "3": {
+      "Name": "Player 3",
+      "Tags": [],
+      "Active": false,
+      "Index": 3,
+      "Type": 1,
+      "PlayerIdentifier": {
+        "Guid": "58549d44-cdd8-4247-86ae-ce2476f24500"
+      },
+      "TypeDependentPlayerInfo": {
+        "VirtualProjectIdentifier": null
+      },
+      "MultiplayerRole": 3
+    },
+    "4": {
+      "Name": "Player 4",
+      "Tags": [],
+      "Active": false,
+      "Index": 4,
+      "Type": 1,
+      "PlayerIdentifier": {
+        "Guid": "dea5c0ec-f79f-4d5a-a833-ddc5f1b743ac"
+      },
+      "TypeDependentPlayerInfo": {
+        "VirtualProjectIdentifier": null
+      },
+      "MultiplayerRole": 3
+    }
+  },
+  "IsMppmActive": true,
+  "IsMutePlayers": false
+}

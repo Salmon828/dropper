@@ -1,0 +1,40 @@
+:root {
+}
+
+.panel {
+    background-color: rgb(0, 12, 36);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu {
+    background-color: rgb(17, 28, 61);
+}
+
+.unity-button {
+    flex-grow: 1;
+    margin-top: 32px;
+    margin-right: 32px;
+    margin-bottom: 32px;
+    margin-left: 32px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-shrink: 0;
+    font-size: 47px;
+}
+
+.unity-button:hover {
+    background-color: rgb(30, 121, 213);
+}
+
+.slider {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+}
