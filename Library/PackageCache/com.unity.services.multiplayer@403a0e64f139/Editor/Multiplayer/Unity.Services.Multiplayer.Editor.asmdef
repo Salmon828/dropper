@@ -1,0 +1,19 @@
+{
+    "name": "Unity.Services.Multiplayer.Editor",
+    "rootNamespace": "Unity.Services.Multiplayer.Editor",
+    "references": [
+        "Unity.Services.Core",
+        "Unity.Services.Multiplayer"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

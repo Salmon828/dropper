@@ -1,3 +1,4 @@
+using Dropper;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 public class OnlinePlayer : NetworkBehaviour
 {
     public NetworkVariable<Vector3> netDirection = new NetworkVariable<Vector3>();
+    public NetworkVariable<int> playerNumber = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     InputAction Up, Down, Left, Right;
     public InputActionAsset actionAsset;
@@ -19,8 +21,29 @@ public class OnlinePlayer : NetworkBehaviour
     private float sendTimer;
 
     private Rigidbody2D rb;
+    public bool isP1 = false;
+
+    [SerializeField]
+    OnlineGameManager manager;
     public override void OnNetworkSpawn()
     {
+        // Number every connected player starting from 0
+        if (IsServer && playerNumber.Value == 0)
+        {
+            int index = 1;
+            var list = NetworkManager.ConnectedClientsList;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].ClientId == OwnerClientId)
+                {
+                    index = i + 1; break;
+                }
+            }
+            playerNumber.Value = index;
+        }
+
+        manager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+
         // To allow first frame movement
         sendTimer = sendInterval;
         rb = GetComponent<Rigidbody2D>();
@@ -98,5 +121,17 @@ public class OnlinePlayer : NetworkBehaviour
         netDirection.Value = newDir;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!IsServer) return; 
+
+        if (collision.tag == "Obstacle")
+        {
+            bool p1 = false;
+            if (playerNumber.Value == 1) p1 = true;
+
+            manager.scoreUpdate(p1);
+        }
+    }
 
 }

@@ -1,0 +1,96 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Services.Core
+{
+    public static class UnityServicesExtensions
+    {
+        public static Unity.Services.Multiplayer.IMultiplayerServerService GetMultiplayerServerService(this IUnityServices unityServices);
+    }
+}
+
+namespace Unity.Services.Multiplayer
+{
+    public interface IMultiplayAllocation
+    {
+        public string EventId { get; }
+        public string ID { get; }
+        public long ServerId { get; }
+    }
+
+    public interface IMultiplayerServerService
+    {
+        public System.Threading.Tasks.Task<IServerSession> CreateSessionAsync(SessionOptions sessionOptions);
+        public System.Threading.Tasks.Task<IMultiplaySessionManager> StartMultiplaySessionManagerAsync(MultiplaySessionManagerOptions options);
+    }
+
+    public interface IMultiplaySessionManager
+    {
+        public ServerAllocation Allocation { get; }
+        public System.Nullable<System.UInt16> ConnectionPort { get; }
+        [JetBrains.Annotations.CanBeNull] public string IpAddress { get; }
+        public bool IsReadyForPlayers { get; }
+        public System.Nullable<System.UInt16> QueryPort { get; }
+        public System.Nullable<long> ServerId { get; }
+        [JetBrains.Annotations.CanBeNull] public string ServerLogDirectory { get; }
+        public IServerSession Session { get; }
+        public MultiplaySessionManagerState State { get; }
+        public System.Threading.Tasks.Task<TPayload> GetAllocationPayloadFromJsonAsAsync<TPayload>();
+        public System.Threading.Tasks.Task<string> GetAllocationPayloadFromPlainTextAsync();
+        public System.Threading.Tasks.Task SetPlayerReadinessAsync(bool isReady);
+    }
+
+    public static class MatchmakerServerExtensions
+    {
+        public static System.Threading.Tasks.Task StartBackfillingAsync(this ISession session);
+        public static System.Threading.Tasks.Task StopBackfillingAsync(this ISession session);
+        [System.Obsolete(@"This method is missing the `playerConnectionTimeout` parameter and is actually setting `backfillingLoopInterval` as `playerConnectionTimeout`. Use WithBackfillingConfiguration with 5 parameters instead.")] public static T WithBackfillingConfiguration<T>(this T options, bool enable, bool automaticallyRemovePlayers = true, bool autoStart = true, int backfillingLoopInterval = 1) where T : SessionOptions;
+        public static T WithBackfillingConfiguration<T>(this T options, bool enable, bool automaticallyRemovePlayers, bool autoStart, int playerConnectionTimeout, int backfillingLoopInterval) where T : SessionOptions;
+    }
+
+    public static class MultiplayerServerService
+    {
+        public static IMultiplayerServerService Instance { get; }
+    }
+
+    public class MultiplayServerOptions
+    {
+        public bool AutoReady { get; set; }
+        public string BuildId { get; set; }
+        public string GameType { get; set; }
+        public string Map { get; set; }
+        public string ServerName { get; set; }
+        public MultiplayServerOptions(string serverName, string gameType, string buildId, string map, bool autoReady = true) {}
+    }
+
+    public class MultiplaySessionManagerEventCallbacks
+    {
+        public event System.Action<IMultiplayAllocation> Allocated;
+        public event System.Action<IMultiplayAllocation> Deallocated;
+        public event System.Action<bool> PlayerReadinessChanged;
+        public event System.Action<MultiplaySessionManagerState> StateChanged;
+        public MultiplaySessionManagerEventCallbacks() {}
+    }
+
+    public class MultiplaySessionManagerOptions
+    {
+        public MultiplaySessionManagerEventCallbacks Callbacks;
+        public MultiplayServerOptions MultiplayServerOptions { get; set; }
+        public SessionOptions SessionOptions { get; set; }
+        public MultiplaySessionManagerOptions() {}
+    }
+
+    public enum MultiplaySessionManagerState
+    {
+        Allocated = 2,
+        AwaitingAllocation = 1,
+        Uninitialized = 0,
+    }
+
+    public class ServerAllocation : IMultiplayAllocation
+    {
+        public string EventId { get; }
+        public string ID { get; }
+        public long ServerId { get; }
+    }
+}

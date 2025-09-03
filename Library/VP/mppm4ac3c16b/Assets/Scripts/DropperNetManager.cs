@@ -1,15 +1,20 @@
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
 namespace Dropper
 {
+
+    //Makes handy debug buttons for netcode testing
     public class DropperNetManager : MonoBehaviour
     {
+
         private NetworkManager m_NetworkManager;
 
         void Awake()
         {
             m_NetworkManager = GetComponent<NetworkManager>();
+            
         }
 
         void OnGUI()
@@ -62,11 +67,6 @@ namespace Dropper
                     //player.Move();
                 }
             }
-        }
-
-        static void SpawnTrails()
-        {
-
         }
 
 
