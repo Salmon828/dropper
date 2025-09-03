@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class OnlinePlayer : NetworkBehaviour
 {
-    public NetworkVariable<Vector3> position = new NetworkVariable<Vector3>();
     public NetworkVariable<Vector3> netDirection = new NetworkVariable<Vector3>();
 
     InputAction Up, Down, Left, Right;
@@ -14,9 +13,17 @@ public class OnlinePlayer : NetworkBehaviour
     [SerializeField]
     private Vector3 direction = Vector3.right;
     public float moveSpeed = 10f;
-   
+
+    // Variables that limit the rate at which clients can send data to the server
+    private float sendInterval = 1f / 20f;
+    private float sendTimer;
+
+    private Rigidbody2D rb;
     public override void OnNetworkSpawn()
     {
+        // To allow first frame movement
+        sendTimer = sendInterval;
+        rb = GetComponent<Rigidbody2D>();
 
         if (IsOwner)
         {
@@ -35,51 +42,58 @@ public class OnlinePlayer : NetworkBehaviour
                 map.Enable();
             }
         }
-        else
-        {
-           enabled = false;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!IsOwner) return;
+
         if (Up.WasPerformedThisFrame())
         {
             direction = Vector3.up;
-            changeDirectionRpc(direction);
+            changeDir(direction);
         }
         else if (Down.WasPerformedThisFrame())
         {
             direction = Vector3.down;
-            changeDirectionRpc(direction);
+            changeDir(direction);
         }
         else if (Left.WasPerformedThisFrame())
         {
             direction = Vector3.left;
-            changeDirectionRpc(direction);
+            changeDir(direction);
         }
         else if (Right.WasPerformedThisFrame())
         {
             direction = Vector3.right;
-            changeDirectionRpc(direction);
+            changeDir(direction);
         }
-        
-        moveRequestRpc();
+        sendTimer += Time.deltaTime;
     }
 
-    [Rpc(SendTo.Server)]
-    void moveRequestRpc(RpcParams rpcParams = default)
+    private void FixedUpdate()
     {
-        Vector3 pos = position.Value;
-        pos += netDirection.Value * moveSpeed * Time.deltaTime;
-        position.Value = pos;
-        transform.position = pos;
+        // Server controls movement
+
+        if (!IsServer) return;
+
+        Vector3 newPos = netDirection.Value * moveSpeed * Time.fixedDeltaTime;
+
+        rb.MovePosition(transform.position + newPos);
     }
 
-    [Rpc(SendTo.Server)]
-    void changeDirectionRpc(Vector3 newDir, RpcParams rpcParams = default)
+    void changeDir(Vector3 dir)
+    {
+        if (sendTimer >= sendInterval)
+        {
+            changeDirectionServerRpc(dir);
+            sendTimer = 0;
+        }
+    }
+
+    [ServerRpc]
+    void changeDirectionServerRpc(Vector3 newDir)
     {
         netDirection.Value = newDir;
     }
