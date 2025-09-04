@@ -20,13 +20,15 @@ public class OnlinePlayer : NetworkBehaviour
     private float sendInterval = 1f / 20f;
     private float sendTimer;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public bool isP1 = false;
 
     [SerializeField]
     OnlineGameManager manager;
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         // Number every connected player starting from 0
         if (IsServer && playerNumber.Value == 0)
         {
@@ -98,14 +100,16 @@ public class OnlinePlayer : NetworkBehaviour
     private void FixedUpdate()
     {
         // Server controls movement
-
         if (!IsServer) return;
 
-        Vector3 newPos = netDirection.Value * moveSpeed * Time.fixedDeltaTime;
+        if (!manager.freeze.Value)
+        {
+            Vector3 newPos = netDirection.Value * moveSpeed * Time.fixedDeltaTime;
 
-        rb.MovePosition(transform.position + newPos);
+            rb.MovePosition(transform.position + newPos);
+        }
+
     }
-
     void changeDir(Vector3 dir)
     {
         if (sendTimer >= sendInterval)
