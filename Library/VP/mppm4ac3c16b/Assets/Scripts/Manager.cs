@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,9 @@ public class Manager : MonoBehaviour
     public int scoreToWin = 3;
     public TextMeshProUGUI textScore;
     public TextMeshProUGUI textScore2;
+
+    [SerializeField]
+    ParticleSystem part;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,10 +57,18 @@ public class Manager : MonoBehaviour
         if (isP1)
         {
             score2 += 1;
+
+            playCrashParticles(P1.transform.position, P1Color);
+            P1.GetComponent<BoxCollider2D>().enabled = false;
+            P2.GetComponent<BoxCollider2D>().enabled = false;
         }
         else
         {
             score += 1;
+
+            playCrashParticles(P2.transform.position, P2Color);
+            P1.GetComponent<BoxCollider2D>().enabled = false;
+            P2.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         // Game ending logic
@@ -77,9 +89,22 @@ public class Manager : MonoBehaviour
         }
 
         updateScoreText();
+        StartCoroutine(ResetWithDelay());
+    }
+
+    IEnumerator ResetWithDelay()
+    {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    private void playCrashParticles(Vector3 position, Color color)
+    {
+        part.transform.position = position;
+        var main = part.main;
+        main.startColor = color;
+        part.Play();
+    }
     private void updateScoreText()
     {
         textScore.text = score.ToString();

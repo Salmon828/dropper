@@ -28,7 +28,7 @@ public class Bot : MonoBehaviour
     {
         if (Physics2D.CircleCast(transform.position, 0.3f, direction, Random.Range(0.5f, 3.0f), layerMask))
         {
-            Debug.Log("Object in front");
+            //Debug.Log("Object in front");
             direction = randomVector();
         }
     }

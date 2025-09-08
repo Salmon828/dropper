@@ -67,7 +67,6 @@ public class PlayerSquare : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
         if (collision.tag == "Obstacle")
         {
             direction = Vector3.zero;
@@ -75,4 +74,5 @@ public class PlayerSquare : MonoBehaviour
             
         }
     }
+
 }

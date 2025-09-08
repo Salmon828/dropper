@@ -81,6 +81,7 @@ public class OnlineGameManager : NetworkBehaviour
         }
     }
 
+    // Sets the players starting positions based on serialized data, should only be called from the server due to networktransforms
     void setStartPositions()
     {
         int currentClient = 0;
@@ -114,6 +115,12 @@ public class OnlineGameManager : NetworkBehaviour
         }
 
         checkWin();
+
+        // Reset round 
+        setStartPositions();
+        countDownHappened = false;
+        freeze.Value = true;
+
         /*freeze.Value = true;
         countDownHappened = false;
         NetworkManager.SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);*/
@@ -148,7 +155,15 @@ public class OnlineGameManager : NetworkBehaviour
     void updateCountDownUI()
     {
         if (!IsClient) return;
-        textCountdown.text = timer.Value.ToString();
+        textCountdown.text = timer.Value.ToString("F1");
+        if(timer.Value > 0)
+        {
+            textCountdown.enabled = true;
+        }
+        else
+        {
+            textCountdown.enabled = false;
+        }
     }
     void SpawnTrails()
     {
