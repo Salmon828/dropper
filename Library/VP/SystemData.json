@@ -7,7 +7,7 @@
       "Index": 1,
       "Type": 0,
       "PlayerIdentifier": {
-        "Guid": "cd2a421f-beef-4df2-b542-0fcb1c766920"
+        "Guid": "5ba287ef-e7dd-4c39-a81e-04daf16ca051"
       },
       "TypeDependentPlayerInfo": {
         "VirtualProjectIdentifier": null
@@ -21,11 +21,11 @@
       "Index": 2,
       "Type": 1,
       "PlayerIdentifier": {
-        "Guid": "b5665f6d-3516-4018-a9bd-59b219d25565"
+        "Guid": "bc2e4b67-d1a5-41d7-81f8-f64cdcea6730"
       },
       "TypeDependentPlayerInfo": {
         "VirtualProjectIdentifier": {
-          "m_Id": "4ac3c16b",
+          "m_Id": "8632785e",
           "m_Prefix": "mppm"
         }
       },
@@ -38,10 +38,13 @@
       "Index": 3,
       "Type": 1,
       "PlayerIdentifier": {
-        "Guid": "58549d44-cdd8-4247-86ae-ce2476f24500"
+        "Guid": "62a04116-0533-47d2-8a32-e37551892d66"
       },
       "TypeDependentPlayerInfo": {
-        "VirtualProjectIdentifier": null
+        "VirtualProjectIdentifier": {
+          "m_Id": "7f40c940",
+          "m_Prefix": "mppm"
+        }
       },
       "MultiplayerRole": 3
     },
@@ -52,7 +55,7 @@
       "Index": 4,
       "Type": 1,
       "PlayerIdentifier": {
-        "Guid": "dea5c0ec-f79f-4d5a-a833-ddc5f1b743ac"
+        "Guid": "2ed9ecdf-7435-413d-8810-4b1cb2309294"
       },
       "TypeDependentPlayerInfo": {
         "VirtualProjectIdentifier": null

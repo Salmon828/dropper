@@ -1,0 +1,32 @@
+{
+    "name": "Unity.Multiplayer.Playmode.Workflow.Editor",
+    "rootNamespace": "Unity.Multiplayer.Playmode.Workflow.Editor",
+    "references": [
+        "Unity.Multiplayer.Playmode.VirtualProjects.Editor",
+        "Unity.Multiplayer.Playmode.Common.Editor",
+        "Unity.Multiplayer.Playmode.Common.Runtime",
+        "Unity.DedicatedServer.MultiplayerRoles.Editor",
+        "Unity.DedicatedServer.MultiplayerRoles",
+        "Unity.Multiplayer.PlayMode.Editor.Bridge",
+        "Unity.Multiplayer.PlayMode.Analytics.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.dedicated-server",
+            "expression": "1.6.1",
+            "define": "UNITY_USE_MULTIPLAYER_ROLES"
+        }
+    ],
+    "noEngineReferences": false
+}
