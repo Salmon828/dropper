@@ -131,15 +131,11 @@ public class OnlinePlayer : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        Debug.Log(collision);
-
-        if (fired) return;
-        fired = true;
-
-        if (collision.tag == "Obstacle" || collision.tag == "Player")
+        Debug.Log("TriggerEnter:" + collision);
+        if (collision.tag == "Obstacle")
         {
-            bool p1 = false;
-            if (playerNumber.Value == 1) p1 = true;
+            int p1 = 0;
+            if (playerNumber.Value == 1) p1 = 1;
 
             manager.scoreUpdate(p1);
             fired = false;
@@ -150,7 +146,13 @@ public class OnlinePlayer : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        Debug.Log(collision);
+        Debug.Log("CollisonEnter!! Name:"+collision.collider.name);
+        
+        if (collision.collider.tag == "Player")
+        {
+            manager.scoreUpdate(2);
+            fired = false;
+        }
 
     }
 

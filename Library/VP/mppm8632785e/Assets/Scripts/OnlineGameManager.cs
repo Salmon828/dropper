@@ -101,17 +101,23 @@ public class OnlineGameManager : NetworkBehaviour
     {
         updateCountDownUI();
     }
-    public void scoreUpdate(bool isP1)
+    public void scoreUpdate(int isP1)
     {
         if (!IsServer) return;
 
-        if (isP1)
+        // 0 = true, 1 = false, others = tie
+        if (isP1 == 0)
         {
             score2.Value += 1;
+        }
+        else if (isP1 == 1)
+        {
+            score.Value += 1;
         }
         else
         {
             score.Value += 1;
+            score2.Value += 1;
         }
 
         freeze.Value = true;
