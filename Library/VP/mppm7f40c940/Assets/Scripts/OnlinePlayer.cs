@@ -146,14 +146,17 @@ public class OnlinePlayer : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        Debug.Log("CollisonEnter!! Name:"+collision.collider.name);
-        
-        if (collision.collider.tag == "Player")
+        // Stop collisions happening before the game starts **look into more robust gamestate triggers**
+        if (!manager.freeze.Value)
         {
-            manager.scoreUpdate(2);
-            fired = false;
-        }
+            Debug.Log("CollisonEnter!! Name:" + collision.collider.name);
 
+            if (collision.collider.tag == "Player")
+            {
+                manager.scoreUpdate(2);
+                fired = false;
+            }
+        }
     }
 
 }
