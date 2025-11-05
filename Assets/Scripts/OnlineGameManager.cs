@@ -173,8 +173,4 @@ public class OnlineGameManager : NetworkBehaviour
             textCountdown.enabled = false;
         }
     }
-    void SpawnTrails()
-    {
-
-    }
 }
