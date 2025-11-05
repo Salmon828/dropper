@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638973176009931883
-    m_Hash: 3388007054
+      ticks: 638979290086607293
+    m_Hash: 3900556455
   m_LockFileStatus:
     m_FilePath: C:/Unity Projects/Unity Projects/Dropper/Dropper/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638973176009983097
-    m_Hash: 3237587047
+      ticks: 638979290086650297
+    m_Hash: 1679373033
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -1299,9 +1299,11 @@ m_ResolvedPackages:
     - 2.9.2
     - 2.9.3
     - 2.10.0
+    - 2.10.1
     compatible:
     - 2.10.0
-    recommended: 2.10.0
+    - 2.10.1
+    recommended: 2.10.1
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -2164,12 +2166,12 @@ m_ResolvedPackages:
       scopePatternExpression: 
       message: 
       readMoreLink: 
-- packageId: com.unity.netcode.gameobjects@2.6.0
+- packageId: com.unity.netcode.gameobjects@2.7.0
   testable: 0
   isDirectDependency: 1
-  version: 2.6.0
+  version: 2.7.0
   source: 1
-  resolvedPath: C:\Unity Projects\Unity Projects\Dropper\Dropper\Library\PackageCache\com.unity.netcode.gameobjects@7e60351bfc70
+  resolvedPath: C:\Unity Projects\Unity Projects\Dropper\Dropper\Library\PackageCache\com.unity.netcode.gameobjects@bd2a018756ed
   assetPath: Packages/com.unity.netcode.gameobjects
   name: com.unity.netcode.gameobjects
   displayName: Netcode for GameObjects
@@ -2239,6 +2241,7 @@ m_ResolvedPackages:
     - 2.5.0
     - 2.5.1
     - 2.6.0
+    - 2.7.0
     compatible:
     - 1.14.1
     - 2.0.0-exp.2
@@ -2262,11 +2265,12 @@ m_ResolvedPackages:
     - 2.5.0
     - 2.5.1
     - 2.6.0
-    recommended: 2.6.0
+    - 2.7.0
+    recommended: 2.7.0
     deprecated: []
   dependencies:
   - name: com.unity.transport
-    version: 2.4.0
+    version: 2.6.0
   - name: com.unity.nuget.mono-cecil
     version: 1.11.4
   resolvedDependencies:
@@ -2306,18 +2310,18 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638962271824990000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.6/manual/index.html
+  datePublishedTicks: 638975215889590000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.7/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.netcode.gameobjects.git
-    revision: a0231c68aec9fed1e039a2091101acd7e6b94764
+    revision: 837684437cdd51541167d6ad5e62b801be9f7a76
     path: 
   unityLifecycle:
     version: 1.14.1
     nextVersion: 
-    recommendedVersion: 2.6.0
+    recommendedVersion: 2.7.0
     isDeprecated: 0
     deprecationMessage: 
     isDiscoverable: 1
@@ -2326,21 +2330,48 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Added\n\n- `NetworkSceneManager` as an internal
-    wrapper for the `SceneManager.Scene.handle` and swapped all places that use an
-    `int` to represent a `Scene.handle` to instead use the `NetworkSceneManager`.
-    (#3647)\n- Clicking on the Help icon in the inspector will now redirect to the
-    relevant documentation. (#3663)\n- Added a `Set` function onto `NetworkList`
-    that takes an optional parameter that forces an update to be processed even if
-    the current value is equal to the previous value. (#3690)\n\n### Changed\n\n-
-    Improved performance of the NetworkVariable. (#3683)\n- Improved performance
-    around the NetworkBehaviour component. (#3687)\n\n### Fixed\n\n- Distributed
-    authority clients no longer send themselves in the `ClientIds` list when sending
-    a `ChangeOwnershipMessage`. (#3687)\n- Made a variety of small performance improvements.
-    (#3683)"}'
+  upmReserved: '{"changelog":"### Added\n\n- `RpcInvokePermission` to control who
+    has permission to invoke specific RPC methods. (#3731)\n- Added NetworkRigidbody
+    documentation section. (#3664)\n- Added new fields to the `SceneMap` struct when
+    using Unity 6.3 or higher. These fields allow referencing scene handles via the
+    new `SceneHandle` struct. (#3734)\n\n### Changed\n\n- Better error message when
+    using generic IEquatable in a generic INetworkSerializable class and updated
+    documentation with workaround. (#3739)\n- The `NetworkManager` functions `GetTransportIdFromClientId`
+    and `GetClientIdFromTransportId` will now return `ulong.MaxValue` when the clientId
+    or transportId do not exist. (#3707)\n- Changed NetworkShow to send a message
+    at the end of the frame and force a NetworkVariable synchronization prior to
+    generating the CreateObjectMessage as opposed to waiting until the next network
+    tick to synchronize the show with the update to NetworkVariables. (#3664)\n-
+    Changed NetworkTransform now synchronizes `NetworkTransform.SwitchTransformSpaceWhenParented`
+    when it is updated by the motion model authority. (#3664)\n- Changed when NetworkObjects
+    pending to be shown to clients can now occur on partial network ticks. If any
+    pending NetworkObjects pending to be shown to clients happens to be ready on
+    a new network tick they still are shown after network variable deltas have been
+    processed. (#3664)\n- Changed the default `NetworkDelivery` used by all messages
+    is now reliable fragmented sequenced with the exception of named, unnamed, and
+    any messages sent with a user specified network delivery type. This assures certain
+    order of operations to be preserved when same call-stack changes are applied
+    to a newly spawned, authority side, NetworkObject. (#3664)\n- Changed NetworkTransform
+    documentation to better reflect the Teleport methods intended usage along with
+    updates to NetworkObject and physics areas of the documentation. (#3664)\n- The
+    first session owner no longer sends two synchronization messages to the service.
+    (#3563)\n- Updated transport dependency of the package to 2.6.0 (#3736)\n\n###
+    Deprecated\n\n- Deprecated all `RequireOwnership` fields around the RPCs in favor
+    of the `RpcInvokePermission`. (#3731)\n- On Unity 6.5 some `SceneMap` fields
+    that use an `int` to represent a `SceneHandle` are deprecated. (#3734)\n\n###
+    Removed\n\n- Removed usage of UNITY_UNET_PRESENT define (#3736)\n\n### Fixed\n\n-
+    Initialization errors with NetworkAnimator. (#3767)\n- Multiple disconnect events
+    from the same transport will no longer disconnect the host. (#3707)\n- Fixed
+    NetworkTransform state synchronization issue when `NetworkTransform.SwitchTransformSpaceWhenParented`
+    is enabled and the associated NetworkObject is parented multiple times in a single
+    frame or within a couple of frames. (#3664)\n- Fixed issue when spawning, parenting,
+    and immediately re-parenting when `NetworkTransform.SwitchTransformSpaceWhenParented`
+    is enabled. (#3664)\n- Fixed issue where the disconnect event and provided message
+    was too generic to know why the disconnect occurred. (#3551)\n- Exception when
+    the network prefab list in the network manager has uninitialized elements. (#3739)"}'
   assetStore:
     productId: 
-  fingerprint: 7e60351bfc704154de8b451abf43bdb8f72fd3a2
+  fingerprint: bd2a018756edad4b0a685634ffde855b1207c37e
   editorCompatibility:
     compatibilityLevel: 0
     minimumPackageVersion: 1.14.1
@@ -6307,9 +6338,11 @@ m_ResolvedPackages:
     - 2.6.0-pre.3
     - 2.6.0-pre.4
     - 2.6.2
+    - 2.6.3
     compatible:
     - 2.6.2
-    recommended: 2.6.2
+    - 2.6.3
+    recommended: 2.6.3
     deprecated: []
   dependencies:
   - name: com.unity.burst

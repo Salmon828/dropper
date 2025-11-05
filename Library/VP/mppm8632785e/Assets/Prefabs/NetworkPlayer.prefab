@@ -262,4 +262,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   isP1: 0
   fired: 0
+  trailSpawnRate: 1
+  trailPrefab: {fileID: -7317145270462648908, guid: 5b8f8ab374ee44c44b371c07bc2d8709, type: 3}
   manager: {fileID: 0}

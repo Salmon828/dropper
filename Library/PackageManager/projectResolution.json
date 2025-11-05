@@ -149,13 +149,13 @@
       "source": "registry",
       "testable": false
     },
-    "com.unity.netcode.gameobjects@2.6.0": {
+    "com.unity.netcode.gameobjects@2.7.0": {
       "name": "com.unity.netcode.gameobjects",
       "displayName": "Netcode for GameObjects",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.netcode.gameobjects@7e60351bfc70",
-      "fingerprint": "7e60351bfc704154de8b451abf43bdb8f72fd3a2",
+      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.netcode.gameobjects@bd2a018756ed",
+      "fingerprint": "bd2a018756edad4b0a685634ffde855b1207c37e",
       "editorCompatibility": "6000.0.0a1",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "source": "registry",
       "testable": false
     },

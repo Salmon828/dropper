@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 
-// Handles score, gamestate, and trail instatiation 
+// Handles score, gamestate 
 public class OnlineGameManager : NetworkBehaviour
 {
 
@@ -35,6 +35,8 @@ public class OnlineGameManager : NetworkBehaviour
     [SerializeField]
     private int countDownLen = 3;
     private bool countDownHappened = false;
+
+
 
     // Spawn positions and directions those positions correspond with, probably a way to do this with 1 data structure
     [SerializeField]
@@ -78,6 +80,9 @@ public class OnlineGameManager : NetworkBehaviour
                 countDownHappened = true;
                 timer.Value = 0;
             }
+
+           
+
         }
     }
 

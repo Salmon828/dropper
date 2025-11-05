@@ -1,7 +1,10 @@
 using Dropper;
+using NUnit.Framework;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System.Linq;
 
 public class OnlinePlayer : NetworkBehaviour
 {
@@ -22,6 +25,12 @@ public class OnlinePlayer : NetworkBehaviour
 
     public Rigidbody2D rb;
     public bool isP1, fired = false;
+
+    [SerializeField]
+    private int trailSpawnRate = 1;
+    private float trailTimer = 0f;
+    [SerializeField]
+    private NetworkObject trailPrefab;
 
     [SerializeField]
     OnlineGameManager manager;
@@ -109,6 +118,17 @@ public class OnlinePlayer : NetworkBehaviour
             Vector3 newPos = netDirection.Value * moveSpeed * Time.fixedDeltaTime;
 
             rb.MovePosition(transform.position + newPos);
+            trailTimer += Time.deltaTime;
+
+            if (trailTimer > trailSpawnRate)
+            {
+                trailTimer = 0;
+                Vector3 spawnPos = transform.position;
+                var t = Instantiate(trailPrefab, spawnPos, transform.rotation);
+                var marker = t.GetComponent<SpawnMarker>();
+                marker.SpawnerClientId = (ulong)playerNumber.Value;
+                t.Spawn();
+            }
         }
 
     }
@@ -127,6 +147,23 @@ public class OnlinePlayer : NetworkBehaviour
         netDirection.Value = newDir;
     }
 
+    private void clearTrails()
+    {
+        if (!IsServer) return;
+
+        var spawnList = NetworkManager.Singleton.SpawnManager.SpawnedObjectsList.ToList();
+        foreach (var t in spawnList)
+        {
+            if(t != null && t.IsSpawned && t.TryGetComponent<SpawnMarker>(out _))
+            { 
+
+                if (t == NetworkObject) continue;
+
+                t.Despawn(true);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!IsServer) return;
@@ -139,6 +176,7 @@ public class OnlinePlayer : NetworkBehaviour
 
             manager.scoreUpdate(p1);
             fired = false;
+            clearTrails();
         }
     }
 
@@ -155,6 +193,7 @@ public class OnlinePlayer : NetworkBehaviour
             {
                 manager.scoreUpdate(2);
                 fired = false;
+                clearTrails();
             }
         }
     }

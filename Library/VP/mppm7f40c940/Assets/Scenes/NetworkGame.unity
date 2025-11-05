@@ -857,6 +857,8 @@ MonoBehaviour:
   textCountdown: {fileID: 2000208480}
   maxPlayers: 2
   countDownLen: 3
+  trailSpawnRate: 1
+  trailPrefab: {fileID: 4502696331467541314, guid: 5b8f8ab374ee44c44b371c07bc2d8709, type: 3}
   spawnPositions:
   - {x: -9, y: 0, z: 0}
   - {x: 9, y: 0, z: 0}
