@@ -1,8 +1,9 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 
@@ -14,11 +15,14 @@ public class OnlineGameManager : NetworkBehaviour
     private GameObject trail;
 
     NetworkVariable<float> timer = new NetworkVariable<float>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
+    NetworkVariable<FixedString32Bytes> winText = new NetworkVariable<FixedString32Bytes>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     NetworkVariable<int> score = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
     NetworkVariable<int> score2 = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     public NetworkVariable<bool> freeze = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> p1Rematch = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> p2Rematch = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     [SerializeField]
     public int scoreToWin = 3;
@@ -56,17 +60,19 @@ public class OnlineGameManager : NetworkBehaviour
             score.OnValueChanged += onScoreChanged;
             score2.OnValueChanged += onScoreChanged;
             timer.OnValueChanged += onTimerChanged;
+            winText.OnValueChanged += onWinTextChanged;
 
             updateScoreUI();
 
         }
     }
-    // Update is called once per frame
+    // Update is called once per frame, only running on server instance
     void Update()
     {
         if (!IsServer) return;
 
-        if (NetworkManager.Singleton.ConnectedClientsList.Count == maxPlayers && !countDownHappened)
+
+        if (NetworkManager.Singleton.ConnectedClientsList.Count == maxPlayers && !countDownHappened && !p1Rematch.Value && !p2Rematch.Value)
         {
             // Players are connected and game is ready to start, **Modify later for lobbies**
 
@@ -89,6 +95,7 @@ public class OnlineGameManager : NetworkBehaviour
     // Sets the players starting positions based on serialized data, should only be called from the server due to networktransforms
     void setStartPositions()
     {
+        //if (!IsServer) return;
         int currentClient = 0;
         foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
         {
@@ -106,9 +113,12 @@ public class OnlineGameManager : NetworkBehaviour
     {
         updateCountDownUI();
     }
+    void onWinTextChanged(FixedString32Bytes oldVal, FixedString32Bytes newVal)
+    {
+        winScreen();
+    }
     public void scoreUpdate(int isP1)
     {
-        if (!IsServer) return;
 
         // 0 = true, 1 = false, others = tie
         if (isP1 == 0)
@@ -140,18 +150,34 @@ public class OnlineGameManager : NetworkBehaviour
         if (score.Value >= scoreToWin && score2.Value >= scoreToWin)
         {
             // tie
+            winText.Value = "TIE!";
+            p1Rematch.Value = true;
+            p2Rematch.Value = true;
             Debug.Log("Both win?");
         }
         else if (score.Value >= scoreToWin)
         {
             // p1 win
+            winText.Value = "P1 Wins!";
+            p1Rematch.Value = true;
+            p2Rematch.Value = true;
             Debug.Log("P1 win");
         }
         else if (score2.Value >= scoreToWin)
         {
             // p2 win
+            winText.Value = "P2 Wins!";
+            p1Rematch.Value = true;
+            p2Rematch.Value = true;
             Debug.Log("P2 win");
         }
+    }
+
+    void winScreen()
+    {
+        if(!IsClient) return;
+        textCountdown.text = winText.Value.ToString();
+        textCountdown.enabled = true;
     }
     void updateScoreUI()
     {
