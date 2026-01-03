@@ -52,7 +52,7 @@ public class OnlinePlayer : NetworkBehaviour
             }
             playerNumber.Value = index;
         }
-
+        Debug.Log(playerNumber.Value);
         manager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
 
         // To allow first frame movement
@@ -180,6 +180,7 @@ public class OnlinePlayer : NetworkBehaviour
         }
     }
 
+    // Need to also use collision enter for player collisions, which are ties
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!IsServer) return;

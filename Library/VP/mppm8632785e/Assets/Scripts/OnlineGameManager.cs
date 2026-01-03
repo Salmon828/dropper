@@ -5,6 +5,7 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 // Handles score, gamestate 
@@ -34,6 +35,9 @@ public class OnlineGameManager : NetworkBehaviour
     [SerializeField]
     public TextMeshProUGUI textCountdown;
 
+    [SerializeField]
+    public GameObject rematchButton;
+
     public int maxPlayers = 2;
 
     [SerializeField]
@@ -61,6 +65,7 @@ public class OnlineGameManager : NetworkBehaviour
             score2.OnValueChanged += onScoreChanged;
             timer.OnValueChanged += onTimerChanged;
             winText.OnValueChanged += onWinTextChanged;
+            rematchButton.GetComponent<Button>().onClick.AddListener(onRematchClick);
 
             updateScoreUI();
 
@@ -77,6 +82,7 @@ public class OnlineGameManager : NetworkBehaviour
             // Players are connected and game is ready to start, **Modify later for lobbies**
 
             setStartPositions();
+            hideRematchRpc(); // Find a way to call this only when game resets instead 
 
             timer.Value += Time.deltaTime;
 
@@ -92,6 +98,11 @@ public class OnlineGameManager : NetworkBehaviour
         }
     }
 
+    [Rpc(SendTo.ClientsAndHost)]
+    void hideRematchRpc()
+    {
+        rematchButton.SetActive(false);
+    }
     // Sets the players starting positions based on serialized data, should only be called from the server due to networktransforms
     void setStartPositions()
     {
@@ -116,6 +127,23 @@ public class OnlineGameManager : NetworkBehaviour
     void onWinTextChanged(FixedString32Bytes oldVal, FixedString32Bytes newVal)
     {
         winScreen();
+    }
+    void onRematchClick()
+    {
+        rematchValueServerRpc((int)NetworkManager.LocalClientId, false);
+    }
+
+    [Rpc(SendTo.Server)]
+    void rematchValueServerRpc(int player, bool state)
+    {
+        switch (player)
+        {
+            case 0:
+                p1Rematch.Value = state; break;
+
+            case 1:
+                p2Rematch.Value = state; break ;
+        }
     }
     public void scoreUpdate(int isP1)
     {
@@ -173,11 +201,13 @@ public class OnlineGameManager : NetworkBehaviour
         }
     }
 
+    // Is called when only when winning text is changed / a player wins
     void winScreen()
     {
         if(!IsClient) return;
         textCountdown.text = winText.Value.ToString();
         textCountdown.enabled = true;
+        rematchButton.SetActive(true);
     }
     void updateScoreUI()
     {
