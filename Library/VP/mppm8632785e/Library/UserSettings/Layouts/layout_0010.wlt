@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.ContainerWindow
   m_PixelRect:
     serializedVersion: 2
-    x: -1912
-    y: 31
-    width: 1904
-    height: 993
+    x: -1920
+    y: 23
+    width: 1920
+    height: 1009
   m_ShowMode: 2
   m_Title: Player 2
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 0
+  m_Maximized: 1
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -43,8 +43,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
-    height: 992.8
+    width: 1920
+    height: 1009
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
+    width: 1920
     height: 30
   m_MinSize: {x: 50, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
@@ -89,11 +89,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 471.2
-    width: 1904
-    height: 491.59998
-  m_MinSize: {x: 50, y: 76}
-  m_MaxSize: {x: 4000, y: 4026}
+    y: 742
+    width: 1920
+    height: 237
+  m_MinSize: {x: 50, y: 74}
+  m_MaxSize: {x: 4000, y: 4024}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -116,8 +116,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
-    height: 471.2
+    width: 1920
+    height: 742
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   m_ActualView: {fileID: 11}
@@ -143,8 +143,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
-    height: 471.2
+    width: 1920
+    height: 742
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   vertical: 0
@@ -169,10 +169,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
-    height: 962.8
-  m_MinSize: {x: 50, y: 152}
-  m_MaxSize: {x: 4000, y: 8052}
+    width: 1920
+    height: 979
+  m_MinSize: {x: 50, y: 150}
+  m_MaxSize: {x: 4000, y: 8050}
   vertical: 1
   controlID: 3
   draggingID: 0
@@ -194,10 +194,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1904
-    height: 962.8
-  m_MinSize: {x: 50, y: 152}
-  m_MaxSize: {x: 4000, y: 8052}
+    width: 1920
+    height: 979
+  m_MinSize: {x: 50, y: 150}
+  m_MaxSize: {x: 4000, y: 8050}
   vertical: 0
   controlID: 2
   draggingID: 0
@@ -222,9 +222,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Unity.Multiplayer.Playmode.Workflow.Editor.TopView\u200B"
   m_Pos:
     serializedVersion: 2
-    x: -1912
-    y: 31
-    width: 1904
+    x: -1920
+    y: 23
+    width: 1920
     height: 30
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -258,10 +258,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: -1912
-    y: 532
-    width: 1904
-    height: 465.59998
+    x: -1920
+    y: 795
+    width: 1920
+    height: 213
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -294,10 +294,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: -1912
-    y: 61
-    width: 1904
-    height: 445.2
+    x: -1920
+    y: 53
+    width: 1920
+    height: 716
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -351,23 +351,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1904
-      height: 424.2
-    m_Scale: {x: 0.3927778, y: 0.3927778}
-    m_Translation: {x: 952, y: 212.1}
+      width: 1920
+      height: 695
+    m_Scale: {x: 0.6435185, y: 0.6435185}
+    m_Translation: {x: 960, y: 347.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -2423.7622
+      x: -1491.7986
       y: -540
-      width: 4847.5244
+      width: 2983.5972
       height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 0.3927778
-  m_LastWindowPixelSize: {x: 1904, y: 445.2}
+  m_defaultScale: 0.6435185
+  m_LastWindowPixelSize: {x: 1920, y: 716}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000

@@ -16,7 +16,6 @@ public class OnlineGameManager : NetworkBehaviour
     private GameObject trail;
 
     NetworkVariable<float> timer = new NetworkVariable<float>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
-    NetworkVariable<FixedString32Bytes> winText = new NetworkVariable<FixedString32Bytes>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     NetworkVariable<int> score = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
     NetworkVariable<int> score2 = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
@@ -24,6 +23,7 @@ public class OnlineGameManager : NetworkBehaviour
     public NetworkVariable<bool> freeze = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> p1Rematch = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> p2Rematch = new NetworkVariable<bool>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
+    private bool rematchAllowed = true;
 
     [SerializeField]
     public int scoreToWin = 3;
@@ -64,11 +64,17 @@ public class OnlineGameManager : NetworkBehaviour
             score.OnValueChanged += onScoreChanged;
             score2.OnValueChanged += onScoreChanged;
             timer.OnValueChanged += onTimerChanged;
-            winText.OnValueChanged += onWinTextChanged;
             rematchButton.GetComponent<Button>().onClick.AddListener(onRematchClick);
 
             updateScoreUI();
 
+        }
+
+        // Want the server to check whether both people are ready to rematch whenever the rematch button/value is changed.
+        if (IsServer)
+        {
+            p1Rematch.OnValueChanged += onRematchChanged;
+            p2Rematch.OnValueChanged += onRematchChanged;
         }
     }
     // Update is called once per frame, only running on server instance
@@ -77,12 +83,11 @@ public class OnlineGameManager : NetworkBehaviour
         if (!IsServer) return;
 
 
-        if (NetworkManager.Singleton.ConnectedClientsList.Count == maxPlayers && !countDownHappened && !p1Rematch.Value && !p2Rematch.Value)
+        if (NetworkManager.Singleton.ConnectedClientsList.Count == maxPlayers && !countDownHappened && rematchAllowed)
         {
             // Players are connected and game is ready to start, **Modify later for lobbies**
 
             setStartPositions();
-            hideRematchRpc(); // Find a way to call this only when game resets instead 
 
             timer.Value += Time.deltaTime;
 
@@ -116,6 +121,18 @@ public class OnlineGameManager : NetworkBehaviour
             currentClient++;
         }
     }
+
+    void onRematchChanged(bool oldVal, bool newVal)
+    {
+        Debug.Log("p1: " + p1Rematch.Value + " p2: " + p2Rematch);
+        if (p1Rematch.Value && p2Rematch.Value)
+        {
+            rematchAllowed = true;
+            hideRematchRpc();
+            score.Value = 0;
+            score2.Value = 0;
+        }
+    }
     void onScoreChanged(int oldVal, int newVal)
     {
         updateScoreUI();
@@ -126,11 +143,11 @@ public class OnlineGameManager : NetworkBehaviour
     }
     void onWinTextChanged(FixedString32Bytes oldVal, FixedString32Bytes newVal)
     {
-        winScreen();
+        //winScreen();
     }
     void onRematchClick()
     {
-        rematchValueServerRpc((int)NetworkManager.LocalClientId, false);
+        rematchValueServerRpc((int)NetworkManager.LocalClientId, true);
     }
 
     [Rpc(SendTo.Server)]
@@ -178,42 +195,44 @@ public class OnlineGameManager : NetworkBehaviour
         if (score.Value >= scoreToWin && score2.Value >= scoreToWin)
         {
             // tie
-            winText.Value = "TIE!";
-            p1Rematch.Value = true;
-            p2Rematch.Value = true;
+            winScreen("TIE!");
             Debug.Log("Both win?");
-        }
-        else if (score.Value >= scoreToWin)
-        {
-            // p1 win
-            winText.Value = "P1 Wins!";
-            p1Rematch.Value = true;
-            p2Rematch.Value = true;
-            Debug.Log("P1 win");
         }
         else if (score2.Value >= scoreToWin)
         {
+            // p1 win
+            winScreen("P1 Wins!");
+            Debug.Log("P1 win");
+        }
+        else if (score.Value >= scoreToWin)
+        {
             // p2 win
-            winText.Value = "P2 Wins!";
-            p1Rematch.Value = true;
-            p2Rematch.Value = true;
+            winScreen("P2 Wins!");
             Debug.Log("P2 win");
         }
     }
 
     // Is called when only when winning text is changed / a player wins
-    void winScreen()
+    void winScreen(string winMessage)
     {
-        if(!IsClient) return;
-        textCountdown.text = winText.Value.ToString();
+        rematchAllowed = false;
+        p1Rematch.Value = false;
+        p2Rematch.Value = false;
+        updateWinScreenRPC(winMessage);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    void updateWinScreenRPC(string winMessage)
+    {
+        textCountdown.text = winMessage;
         textCountdown.enabled = true;
         rematchButton.SetActive(true);
     }
     void updateScoreUI()
     {
         if (!IsClient) return;
-        textScore.text = score.Value.ToString();
-        textScore2.text = score2.Value.ToString();
+        textScore.text = score2.Value.ToString();
+        textScore2.text = score.Value.ToString();
     }
 
     void updateCountDownUI()
