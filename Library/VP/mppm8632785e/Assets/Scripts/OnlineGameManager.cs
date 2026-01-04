@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 
 // Handles score, gamestate 
@@ -64,7 +65,7 @@ public class OnlineGameManager : NetworkBehaviour
             score.OnValueChanged += onScoreChanged;
             score2.OnValueChanged += onScoreChanged;
             timer.OnValueChanged += onTimerChanged;
-            rematchButton.GetComponent<Button>().onClick.AddListener(onRematchClick);
+            rematchButton.GetComponent<Button>().onClick.AddListener(() => StartCoroutine(onRematchClick()));
 
             updateScoreUI();
 
@@ -141,13 +142,23 @@ public class OnlineGameManager : NetworkBehaviour
     {
         updateCountDownUI();
     }
-    void onWinTextChanged(FixedString32Bytes oldVal, FixedString32Bytes newVal)
-    {
-        //winScreen();
-    }
-    void onRematchClick()
+    IEnumerator onRematchClick()
     {
         rematchValueServerRpc((int)NetworkManager.LocalClientId, true);
+        rematchButton.GetComponent<Image>().color = Color.green;
+        while (!p1Rematch.Value || !p2Rematch.Value)
+        {
+            rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Waiting...";
+            yield return new WaitForSecondsRealtime(0.5f);
+            rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Waiting";
+            yield return new WaitForSecondsRealtime(0.5f);
+            rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Waiting.";
+            yield return new WaitForSecondsRealtime(0.5f);
+            rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Waiting..";
+            yield return new WaitForSecondsRealtime(0.5f);
+
+
+        }
     }
 
     [Rpc(SendTo.Server)]
@@ -226,6 +237,8 @@ public class OnlineGameManager : NetworkBehaviour
     {
         textCountdown.text = winMessage;
         textCountdown.enabled = true;
+        rematchButton.GetComponent<Image>().color = Color.white;
+        rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Rematch";
         rematchButton.SetActive(true);
     }
     void updateScoreUI()

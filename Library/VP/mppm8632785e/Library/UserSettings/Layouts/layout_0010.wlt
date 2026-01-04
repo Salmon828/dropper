@@ -44,7 +44,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 1009
+    height: 1008.8
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -89,11 +89,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 742
+    y: 741.6
     width: 1920
-    height: 237
-  m_MinSize: {x: 50, y: 74}
-  m_MaxSize: {x: 4000, y: 4024}
+    height: 237.20001
+  m_MinSize: {x: 50, y: 76}
+  m_MaxSize: {x: 4000, y: 4026}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -117,7 +117,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 742
+    height: 741.6
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   m_ActualView: {fileID: 11}
@@ -144,7 +144,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 742
+    height: 741.6
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   vertical: 0
@@ -170,9 +170,9 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 979
-  m_MinSize: {x: 50, y: 150}
-  m_MaxSize: {x: 4000, y: 8050}
+    height: 978.8
+  m_MinSize: {x: 50, y: 152}
+  m_MaxSize: {x: 4000, y: 8052}
   vertical: 1
   controlID: 3
   draggingID: 0
@@ -195,9 +195,9 @@ MonoBehaviour:
     x: 0
     y: 30
     width: 1920
-    height: 979
-  m_MinSize: {x: 50, y: 150}
-  m_MaxSize: {x: 4000, y: 8050}
+    height: 978.8
+  m_MinSize: {x: 50, y: 152}
+  m_MaxSize: {x: 4000, y: 8052}
   vertical: 0
   controlID: 2
   draggingID: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
     x: -1920
     y: 795
     width: 1920
-    height: 213
+    height: 211.20001
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
     x: -1920
     y: 53
     width: 1920
-    height: 716
+    height: 715.6
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -352,22 +352,22 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 1920
-      height: 695
-    m_Scale: {x: 0.6435185, y: 0.6435185}
-    m_Translation: {x: 960, y: 347.5}
+      height: 694.6
+    m_Scale: {x: 0.6431481, y: 0.6431481}
+    m_Translation: {x: 960, y: 347.3}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1491.7986
+      x: -1492.6577
       y: -540
-      width: 2983.5972
+      width: 2985.3154
       height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 0.6435185
-  m_LastWindowPixelSize: {x: 1920, y: 716}
+  m_defaultScale: 0.6431481
+  m_LastWindowPixelSize: {x: 1920, y: 715.6}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
