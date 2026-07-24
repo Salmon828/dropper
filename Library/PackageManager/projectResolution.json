@@ -1,228 +1,236 @@
 {
   "context": {
-    "projectPath": "C:/Unity Projects/Unity Projects/Dropper/Dropper/Packages",
-    "unityVersion": "6000.2.9f1"
+    "projectPath": "C:/Users/Sam/dropper/dropper/Packages",
+    "unityVersion": "6000.5.5f1"
   },
   "inputs": [
-    "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Packages\\manifest.json",
-    "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Packages\\packages-lock.json",
-    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
+    "C:\\Users\\Sam\\dropper\\dropper\\Packages\\manifest.json",
+    "C:\\Users\\Sam\\dropper\\dropper\\Packages\\packages-lock.json",
+    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.5f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
-    "com.unity.2d.animation@12.0.2": {
+    "com.unity.2d.animation@15.1.0": {
       "name": "com.unity.2d.animation",
       "displayName": "2D Animation",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.animation@34e0443c58ed",
-      "fingerprint": "34e0443c58ed65e66d21023245d2862e066ab2e7",
-      "editorCompatibility": "6000.2.0b4",
-      "version": "12.0.2",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.animation@6d5a363ae647",
+      "fingerprint": "6d5a363ae6477c87cd6ddfac24c283f6754eb9de",
+      "editorCompatibility": "6000.5.0a7",
+      "version": "15.1.0",
       "source": "registry",
       "testable": false
     },
-    "com.unity.2d.aseprite@2.0.2": {
+    "com.unity.2d.aseprite@5.0.3": {
       "name": "com.unity.2d.aseprite",
       "displayName": "2D Aseprite Importer",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.aseprite@dca42b450aa1",
-      "fingerprint": "dca42b450aa1933467340cfd7bce324ddf7b06b2",
-      "editorCompatibility": "6000.2.0a10",
-      "version": "2.0.2",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.aseprite@d13865913efa",
+      "fingerprint": "d13865913efa104292f5e3453c0f984432eba86e",
+      "editorCompatibility": "6000.5.0a6",
+      "version": "5.0.3",
       "source": "registry",
       "testable": false
     },
-    "com.unity.2d.psdimporter@11.0.1": {
+    "com.unity.2d.psdimporter@14.0.3": {
       "name": "com.unity.2d.psdimporter",
       "displayName": "2D PSD Importer",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.psdimporter@0adcab25a8fd",
-      "fingerprint": "0adcab25a8fd3537d5829f344f6e2aa236d0cf8e",
-      "editorCompatibility": "6000.2.0a10",
-      "version": "11.0.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.psdimporter@5d82044f9e43",
+      "fingerprint": "5d82044f9e43e924f0dd0e0589c47746a16a4556",
+      "editorCompatibility": "6000.5.0a7",
+      "version": "14.0.3",
       "source": "registry",
       "testable": false
     },
     "com.unity.2d.sprite@1.0.0": {
       "name": "com.unity.2d.sprite",
       "displayName": "2D Sprite",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.sprite@331abd9a1e2f",
-      "fingerprint": "331abd9a1e2ff424a1ef2626e16936071ab7ce3d",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.sprite@053a968eab56",
+      "fingerprint": "053a968eab56ad54f8322d007733b1e173abaae1",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.2d.spriteshape@12.0.1": {
+    "com.unity.2d.spriteshape@15.0.3": {
       "name": "com.unity.2d.spriteshape",
       "displayName": "2D SpriteShape",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.spriteshape@1d246726c231",
-      "fingerprint": "1d246726c2316e2e6dd7d2aefba54ec6640affa9",
-      "editorCompatibility": "6000.2.0a10",
-      "version": "12.0.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.spriteshape@fcb7ec61a58b",
+      "fingerprint": "fcb7ec61a58bf047ffc3601cbbe5f1f594f3e2d6",
+      "editorCompatibility": "6000.5.0a7",
+      "version": "15.0.3",
       "source": "registry",
       "testable": false
     },
     "com.unity.2d.tilemap@1.0.0": {
       "name": "com.unity.2d.tilemap",
       "displayName": "2D Tilemap Editor",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.tilemap@0b99f08c0204",
-      "fingerprint": "0b99f08c02048105e3f87c2e1f97bcf4c860dae8",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.tilemap@b959501fd678",
+      "fingerprint": "b959501fd678e553bf4629adca17c24211d83b68",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.2d.tilemap.extras@5.0.1": {
+    "com.unity.2d.tilemap.extras@8.0.3": {
       "name": "com.unity.2d.tilemap.extras",
       "displayName": "2D Tilemap Extras",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.tilemap.extras@2338d989ff2a",
-      "fingerprint": "2338d989ff2aec99e03da44e42ae2faf1ebc037d",
-      "editorCompatibility": "6000.2.0a10",
-      "version": "5.0.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.tilemap.extras@a80140457adc",
+      "fingerprint": "a80140457adc3fbf3c0e1e8b8d92f7cd78462e7c",
+      "editorCompatibility": "6000.5.0a7",
+      "version": "8.0.3",
       "source": "registry",
       "testable": false
     },
-    "com.unity.collab-proxy@2.10.0": {
+    "com.unity.collab-proxy@2.13.3": {
       "name": "com.unity.collab-proxy",
       "displayName": "Unity Version Control",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.collab-proxy@1e5e48aff19d",
-      "fingerprint": "1e5e48aff19daaf7562fad196714be852e56fff3",
-      "editorCompatibility": "2021.3.0f1",
-      "version": "2.10.0",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.collab-proxy@4f3be89e8675",
+      "fingerprint": "4f3be89e8675c7ee042eb17177111806be5194c8",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "2.13.3",
       "source": "registry",
       "testable": false
     },
     "com.unity.ide.rider@3.0.38": {
       "name": "com.unity.ide.rider",
       "displayName": "JetBrains Rider Editor",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.ide.rider@1f60b3138684",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.ide.rider@1f60b3138684",
       "fingerprint": "1f60b3138684c97af67aa8d911b1632ba916d29d",
       "editorCompatibility": "2021.3.0a1",
       "version": "3.0.38",
       "source": "registry",
       "testable": false
     },
-    "com.unity.ide.visualstudio@2.0.25": {
+    "com.unity.ide.visualstudio@2.0.26": {
       "name": "com.unity.ide.visualstudio",
       "displayName": "Visual Studio Editor",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.ide.visualstudio@74aa435fc4bb",
-      "fingerprint": "74aa435fc4bb41890f400130ec80f271d1292fd4",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.ide.visualstudio@a99d56dec63f",
+      "fingerprint": "a99d56dec63ffb3a911a5a9bce9b77ba862a601c",
       "editorCompatibility": "2021.3.0a1",
-      "version": "2.0.25",
+      "version": "2.0.26",
       "source": "registry",
       "testable": false
     },
-    "com.unity.inputsystem@1.14.2": {
+    "com.unity.inputsystem@1.19.0": {
       "name": "com.unity.inputsystem",
       "displayName": "Input System",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.inputsystem@be6c4fd0abf5",
-      "fingerprint": "be6c4fd0abf5b9b45f956b97294032a67f3c2f4d",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.14.2",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.inputsystem@21a28c3a6c83",
+      "fingerprint": "21a28c3a6c83903a93cf15d7d0714b773c50fdf6",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.19.0",
       "source": "registry",
       "testable": false
     },
-    "com.unity.multiplayer.center@1.0.0": {
+    "com.unity.multiplayer.center@1.0.1": {
       "name": "com.unity.multiplayer.center",
       "displayName": "Multiplayer Center",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.multiplayer.center@f3fb577b3546",
-      "fingerprint": "f3fb577b3546594b97b8cc34307cd621f60f1c73",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.multiplayer.center@b860850997d0",
+      "fingerprint": "b860850997d026668b04ee7b71cb731ee193804c",
       "editorCompatibility": "6000.0.0a1",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.multiplayer.playmode@1.6.1": {
+    "com.unity.multiplayer.playmode@2.0.2": {
       "name": "com.unity.multiplayer.playmode",
       "displayName": "Multiplayer Play Mode",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.multiplayer.playmode@3acaa705f0f9",
-      "fingerprint": "3acaa705f0f994547817cc7e4e98b83a8596a677",
-      "editorCompatibility": "6000.0.48f1",
-      "version": "1.6.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.multiplayer.playmode@d8888f6ed6aa",
+      "fingerprint": "d8888f6ed6aabc52ac3ec88961782ef040f2392e",
+      "editorCompatibility": "6000.3.0b10",
+      "version": "2.0.2",
       "source": "registry",
       "testable": false
     },
-    "com.unity.multiplayer.tools@2.2.6": {
+    "com.unity.multiplayer.tools@2.2.9": {
       "name": "com.unity.multiplayer.tools",
       "displayName": "Multiplayer Tools",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.multiplayer.tools@8395f16a9a9a",
-      "fingerprint": "8395f16a9a9a77c66f48d3ef8dfd3a1bae8cfbf4",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.multiplayer.tools@f5f96dc4e38c",
+      "fingerprint": "f5f96dc4e38c1ed4cc9ca3a23870f2686be574d2",
       "editorCompatibility": "6000.0.0a1",
-      "version": "2.2.6",
+      "version": "2.2.9",
       "source": "registry",
       "testable": false
     },
-    "com.unity.netcode.gameobjects@2.7.0": {
+    "com.unity.netcode.gameobjects@2.13.0": {
       "name": "com.unity.netcode.gameobjects",
       "displayName": "Netcode for GameObjects",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.netcode.gameobjects@bd2a018756ed",
-      "fingerprint": "bd2a018756edad4b0a685634ffde855b1207c37e",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.netcode.gameobjects@0f12e689d980",
+      "fingerprint": "0f12e689d98078aae872ebc14b15f4a828f0035f",
       "editorCompatibility": "6000.0.0a1",
-      "version": "2.7.0",
+      "version": "2.13.0",
       "source": "registry",
       "testable": false
     },
-    "com.unity.render-pipelines.universal@17.2.0": {
+    "com.unity.render-pipelines.universal@17.5.0": {
       "name": "com.unity.render-pipelines.universal",
       "displayName": "Universal Render Pipeline",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.render-pipelines.universal@bc6f352be672",
-      "fingerprint": "bc6f352be672eba8ef5526e9dda488edc330c691",
-      "editorCompatibility": "6000.2.0a1",
-      "version": "17.2.0",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.render-pipelines.universal@040461d037aa",
+      "fingerprint": "040461d037aaad0f54512707bba8541381cfc689",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "17.5.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.services.multiplayer@1.1.8": {
+    "com.unity.services.multiplayer@2.2.4": {
       "name": "com.unity.services.multiplayer",
       "displayName": "Multiplayer Services",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.multiplayer@34def56704ad",
-      "fingerprint": "34def56704ad0a5fe3e7ec2c421f070f2a5bff1e",
-      "editorCompatibility": "2022.3.0a1",
-      "version": "1.1.8",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.multiplayer@a6d6ce688d71",
+      "fingerprint": "a6d6ce688d71b2f0eb2bc0ea0ff27c09b0b6bebe",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "2.2.4",
       "source": "registry",
       "testable": false
     },
-    "com.unity.test-framework@1.6.0": {
+    "com.unity.test-framework@1.7.0": {
       "name": "com.unity.test-framework",
       "displayName": "Test Framework",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.test-framework@d97b7cd61ded",
-      "fingerprint": "d97b7cd61dedd05f0fbaa425a40bd39d098f5cfc",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.test-framework@1405238725ab",
+      "fingerprint": "1405238725ab5d498428c2b01df5379ae8055acb",
       "editorCompatibility": "6000.0.44f1",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.timeline@1.8.9": {
+    "com.unity.timeline@1.8.12": {
       "name": "com.unity.timeline",
       "displayName": "Timeline",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.timeline@6b9e48457ddb",
-      "fingerprint": "6b9e48457ddb4f64813d77fd77efc79a8f3102ae",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.8.9",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.timeline@8cd8509afae5",
+      "fingerprint": "8cd8509afae5d2655af4657a214db1b563c28425",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.8.12",
       "source": "registry",
       "testable": false
     },
-    "com.unity.ugui@2.0.0": {
+    "com.unity.ugui@2.5.0": {
       "name": "com.unity.ugui",
-      "displayName": "Unity UI",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.ugui@7056cb05de4c",
-      "fingerprint": "7056cb05de4c8d42fc864130edd83b3a093a8505",
-      "editorCompatibility": "2019.2.0a1",
-      "version": "2.0.0",
+      "displayName": "uGUI",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.ugui@f2d87ebaaa32",
+      "fingerprint": "f2d87ebaaa3289c3dce569c5f67c9537aa5f41c4",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "2.5.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.visualscripting@1.9.8": {
+    "com.unity.visualscripting@1.9.11": {
       "name": "com.unity.visualscripting",
       "displayName": "Visual Scripting",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.visualscripting@b4d700247d4b",
-      "fingerprint": "b4d700247d4b84b3360e1afeb054b0bdb201fbc7",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.visualscripting@8bed5ad90189",
+      "fingerprint": "8bed5ad901895f10b7d0e524c4738cab14cef692",
       "editorCompatibility": "2021.3.0a1",
-      "version": "1.9.8",
+      "version": "1.9.11",
       "source": "registry",
       "testable": false
     },
     "com.unity.modules.accessibility@1.0.0": {
       "name": "com.unity.modules.accessibility",
       "displayName": "Accessibility",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.accessibility",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.accessibility",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.adaptiveperformance@1.0.0": {
+      "name": "com.unity.modules.adaptiveperformance",
+      "displayName": "Adaptive Performance",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.adaptiveperformance",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -230,7 +238,7 @@
     "com.unity.modules.ai@1.0.0": {
       "name": "com.unity.modules.ai",
       "displayName": "AI",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.ai",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.ai",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -238,7 +246,7 @@
     "com.unity.modules.androidjni@1.0.0": {
       "name": "com.unity.modules.androidjni",
       "displayName": "Android JNI",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.androidjni",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.androidjni",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -246,7 +254,7 @@
     "com.unity.modules.animation@1.0.0": {
       "name": "com.unity.modules.animation",
       "displayName": "Animation",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.animation",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.animation",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -254,7 +262,7 @@
     "com.unity.modules.assetbundle@1.0.0": {
       "name": "com.unity.modules.assetbundle",
       "displayName": "Asset Bundle",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.assetbundle",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.assetbundle",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -262,7 +270,7 @@
     "com.unity.modules.audio@1.0.0": {
       "name": "com.unity.modules.audio",
       "displayName": "Audio",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.audio",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.audio",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -270,7 +278,7 @@
     "com.unity.modules.cloth@1.0.0": {
       "name": "com.unity.modules.cloth",
       "displayName": "Cloth",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.cloth",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.cloth",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -278,7 +286,7 @@
     "com.unity.modules.director@1.0.0": {
       "name": "com.unity.modules.director",
       "displayName": "Director",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.director",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.director",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -286,7 +294,7 @@
     "com.unity.modules.imageconversion@1.0.0": {
       "name": "com.unity.modules.imageconversion",
       "displayName": "Image Conversion",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.imageconversion",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.imageconversion",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -294,7 +302,7 @@
     "com.unity.modules.imgui@1.0.0": {
       "name": "com.unity.modules.imgui",
       "displayName": "IMGUI",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.imgui",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.imgui",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -302,7 +310,7 @@
     "com.unity.modules.jsonserialize@1.0.0": {
       "name": "com.unity.modules.jsonserialize",
       "displayName": "JSONSerialize",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.jsonserialize",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.jsonserialize",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -310,7 +318,7 @@
     "com.unity.modules.particlesystem@1.0.0": {
       "name": "com.unity.modules.particlesystem",
       "displayName": "Particle System",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.particlesystem",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.particlesystem",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -318,7 +326,7 @@
     "com.unity.modules.physics@1.0.0": {
       "name": "com.unity.modules.physics",
       "displayName": "Physics",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.physics",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.physics",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -326,7 +334,15 @@
     "com.unity.modules.physics2d@1.0.0": {
       "name": "com.unity.modules.physics2d",
       "displayName": "Physics 2D",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.physics2d",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.physics2d",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.physicscore2d@1.0.0": {
+      "name": "com.unity.modules.physicscore2d",
+      "displayName": "Physics Core 2D",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.physicscore2d",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -334,7 +350,7 @@
     "com.unity.modules.screencapture@1.0.0": {
       "name": "com.unity.modules.screencapture",
       "displayName": "Screen Capture",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.screencapture",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.screencapture",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -342,7 +358,7 @@
     "com.unity.modules.terrain@1.0.0": {
       "name": "com.unity.modules.terrain",
       "displayName": "Terrain",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.terrain",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.terrain",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -350,7 +366,7 @@
     "com.unity.modules.terrainphysics@1.0.0": {
       "name": "com.unity.modules.terrainphysics",
       "displayName": "Terrain Physics",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.terrainphysics",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.terrainphysics",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -358,7 +374,7 @@
     "com.unity.modules.tilemap@1.0.0": {
       "name": "com.unity.modules.tilemap",
       "displayName": "Tilemap",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.tilemap",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.tilemap",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -366,7 +382,7 @@
     "com.unity.modules.ui@1.0.0": {
       "name": "com.unity.modules.ui",
       "displayName": "UI",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.ui",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.ui",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -374,7 +390,7 @@
     "com.unity.modules.uielements@1.0.0": {
       "name": "com.unity.modules.uielements",
       "displayName": "UIElements",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.uielements",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.uielements",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -382,7 +398,7 @@
     "com.unity.modules.umbra@1.0.0": {
       "name": "com.unity.modules.umbra",
       "displayName": "Umbra",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.umbra",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.umbra",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -390,7 +406,7 @@
     "com.unity.modules.unityanalytics@1.0.0": {
       "name": "com.unity.modules.unityanalytics",
       "displayName": "Unity Analytics",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unityanalytics",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unityanalytics",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -398,7 +414,7 @@
     "com.unity.modules.unitywebrequest@1.0.0": {
       "name": "com.unity.modules.unitywebrequest",
       "displayName": "Unity Web Request",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unitywebrequest",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unitywebrequest",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -406,7 +422,7 @@
     "com.unity.modules.unitywebrequestassetbundle@1.0.0": {
       "name": "com.unity.modules.unitywebrequestassetbundle",
       "displayName": "Unity Web Request Asset Bundle",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unitywebrequestassetbundle",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unitywebrequestassetbundle",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -414,7 +430,7 @@
     "com.unity.modules.unitywebrequestaudio@1.0.0": {
       "name": "com.unity.modules.unitywebrequestaudio",
       "displayName": "Unity Web Request Audio",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unitywebrequestaudio",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unitywebrequestaudio",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -422,7 +438,7 @@
     "com.unity.modules.unitywebrequesttexture@1.0.0": {
       "name": "com.unity.modules.unitywebrequesttexture",
       "displayName": "Unity Web Request Texture",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unitywebrequesttexture",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unitywebrequesttexture",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -430,7 +446,15 @@
     "com.unity.modules.unitywebrequestwww@1.0.0": {
       "name": "com.unity.modules.unitywebrequestwww",
       "displayName": "Unity Web Request WWW",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.unitywebrequestwww",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.unitywebrequestwww",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.vectorgraphics@1.0.0": {
+      "name": "com.unity.modules.vectorgraphics",
+      "displayName": "Vector Graphics",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.vectorgraphics",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -438,7 +462,7 @@
     "com.unity.modules.vehicles@1.0.0": {
       "name": "com.unity.modules.vehicles",
       "displayName": "Vehicles",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.vehicles",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.vehicles",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -446,15 +470,7 @@
     "com.unity.modules.video@1.0.0": {
       "name": "com.unity.modules.video",
       "displayName": "Video",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.video",
-      "version": "1.0.0",
-      "source": "builtin",
-      "testable": false
-    },
-    "com.unity.modules.vr@1.0.0": {
-      "name": "com.unity.modules.vr",
-      "displayName": "VR",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.vr",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.video",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -462,7 +478,7 @@
     "com.unity.modules.wind@1.0.0": {
       "name": "com.unity.modules.wind",
       "displayName": "Wind",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.wind",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.wind",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -470,7 +486,7 @@
     "com.unity.modules.xr@1.0.0": {
       "name": "com.unity.modules.xr",
       "displayName": "XR",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.xr",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.xr",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -478,7 +494,7 @@
     "com.unity.modules.subsystems@1.0.0": {
       "name": "com.unity.modules.subsystems",
       "displayName": "Subsystems",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.subsystems",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.subsystems",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
@@ -486,219 +502,208 @@
     "com.unity.modules.hierarchycore@1.0.0": {
       "name": "com.unity.modules.hierarchycore",
       "displayName": "Hierarchy Core",
-      "resolvedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.9f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\com.unity.modules.hierarchycore",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.modules.hierarchycore",
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.ext.nunit@2.0.5": {
+    "com.unity.ext.nunit@2.1.0": {
       "name": "com.unity.ext.nunit",
       "displayName": "Custom NUnit",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.ext.nunit@031a54704bff",
-      "fingerprint": "031a54704bffe39e6a0324909f8eaa4565bdebf2",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.ext.nunit@44f7d31723bd",
+      "fingerprint": "44f7d31723bdd3bc52a37606118a195329e01928",
       "editorCompatibility": "2019.4.0a1",
-      "version": "2.0.5",
+      "version": "2.1.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.transport@2.6.0": {
+    "com.unity.transport@6.5.0": {
       "name": "com.unity.transport",
       "displayName": "Unity Transport",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.transport@6e74a0e6481d",
-      "fingerprint": "6e74a0e6481d0f4d298b271a4172b7d880d164e1",
-      "editorCompatibility": "2022.3.0a1",
-      "version": "2.6.0",
-      "source": "registry",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.transport@0c07c94c2861",
+      "fingerprint": "0c07c94c286126a65eced20f6f2be3392cc5ec10",
+      "version": "6.5.0",
+      "source": "builtin",
       "testable": false
     },
-    "com.unity.collections@2.6.2": {
+    "com.unity.collections@6.5.0": {
       "name": "com.unity.collections",
       "displayName": "Collections",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.collections@aea9d3bd5e19",
-      "fingerprint": "aea9d3bd5e19f2a90fc3a39919974a5f3613a159",
-      "editorCompatibility": "2022.3.20f1",
-      "version": "2.6.2",
-      "source": "registry",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.collections@a43cabe808ca",
+      "fingerprint": "a43cabe808ca4c4f0433f6fdfa4d702ccd4f4b6e",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "6.5.0",
+      "source": "builtin",
       "testable": false
     },
-    "com.unity.services.qos@1.3.0": {
+    "com.unity.services.qos@1.4.1": {
       "name": "com.unity.services.qos",
       "displayName": "QoS",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.qos@f4a3648d24d3",
-      "fingerprint": "f4a3648d24d3f9ad047b1fae557532df86bb9d11",
-      "editorCompatibility": "2020.3.0a1",
-      "version": "1.3.0",
-      "source": "registry",
-      "testable": false
-    },
-    "com.unity.services.core@1.14.0": {
-      "name": "com.unity.services.core",
-      "displayName": "Services Core",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.core@9e81a5e38245",
-      "fingerprint": "9e81a5e382457b799480b311ce51187be99abbbf",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.14.0",
-      "source": "registry",
-      "testable": false
-    },
-    "com.unity.services.wire@1.4.0": {
-      "name": "com.unity.services.wire",
-      "displayName": "Wire",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.wire@2d36cce58c62",
-      "fingerprint": "2d36cce58c62ac886c8bb03e9e262a35dcdc4752",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.4.0",
-      "source": "registry",
-      "testable": false
-    },
-    "com.unity.services.deployment@1.4.1": {
-      "name": "com.unity.services.deployment",
-      "displayName": "Deployment",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.deployment@87c909a1d726",
-      "fingerprint": "87c909a1d72616415d25410065bf7702cc2cb4c6",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.qos@03d4b52d4980",
+      "fingerprint": "03d4b52d498041d0dedc2697d693fe564371675c",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.4.1",
       "source": "registry",
       "testable": false
     },
-    "com.unity.nuget.newtonsoft-json@3.2.1": {
+    "com.unity.services.core@1.18.0": {
+      "name": "com.unity.services.core",
+      "displayName": "Services Core",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.core@3464cb68d709",
+      "fingerprint": "3464cb68d7096e9749b8bf60588cfe0568b643fc",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.18.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.wire@1.4.4": {
+      "name": "com.unity.services.wire",
+      "displayName": "Wire",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.wire@aba8a6fb1fe2",
+      "fingerprint": "aba8a6fb1fe2ea08b35f2196580d12fa1731380f",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.4.4",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.deployment@1.7.2": {
+      "name": "com.unity.services.deployment",
+      "displayName": "Deployment",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.deployment@c07c64f9804b",
+      "fingerprint": "c07c64f9804b279384fea9063e46b3247e98d6f0",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.7.2",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.nuget.newtonsoft-json@3.2.2": {
       "name": "com.unity.nuget.newtonsoft-json",
       "displayName": "Newtonsoft Json",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.nuget.newtonsoft-json@74deb55db2a0",
-      "fingerprint": "74deb55db2a0c29ddfda576608bcb86abbd13ee6",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.nuget.newtonsoft-json@4dfd81071c64",
+      "fingerprint": "4dfd81071c6475bb9c114f920bfb4e3fc5e28c6a",
       "editorCompatibility": "2018.4.0a1",
-      "version": "3.2.1",
+      "version": "3.2.2",
       "source": "registry",
       "testable": false
     },
-    "com.unity.services.authentication@3.4.1": {
+    "com.unity.services.authentication@3.7.3": {
       "name": "com.unity.services.authentication",
       "displayName": "Authentication",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.authentication@868ebdf18f3f",
-      "fingerprint": "868ebdf18f3f7551a12ea7e27ba1d3b03a92f269",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "3.4.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.authentication@4e591ebe4d6b",
+      "fingerprint": "4e591ebe4d6b8d7e815a6261184d8f8723e93706",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "3.7.3",
       "source": "registry",
       "testable": false
     },
-    "com.unity.render-pipelines.core@17.2.0": {
+    "com.unity.render-pipelines.core@17.5.0": {
       "name": "com.unity.render-pipelines.core",
       "displayName": "Scriptable Render Pipeline Core",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.render-pipelines.core@04755ad51d99",
-      "fingerprint": "04755ad51d99c8dd3ab30506e3040c19433ec456",
-      "editorCompatibility": "6000.2.0a1",
-      "version": "17.2.0",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.render-pipelines.core@b19a46951e65",
+      "fingerprint": "b19a46951e6565f18005e5489686891c51787981",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "17.5.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.shadergraph@17.2.0": {
+    "com.unity.shadergraph@17.5.0": {
       "name": "com.unity.shadergraph",
       "displayName": "Shader Graph",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.shadergraph@2c9221ffedf4",
-      "fingerprint": "2c9221ffedf48eb0ff60df53ff79906f97dc3713",
-      "editorCompatibility": "6000.2.0a1",
-      "version": "17.2.0",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.shadergraph@8d7376ec43ee",
+      "fingerprint": "8d7376ec43ee0ba3dca1703338e2749e4cfdf0a8",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "17.5.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.render-pipelines.universal-config@17.0.3": {
+    "com.unity.render-pipelines.universal-config@17.5.0": {
       "name": "com.unity.render-pipelines.universal-config",
       "displayName": "Universal Render Pipeline Config",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@8dc1aab4af1d",
-      "fingerprint": "8dc1aab4af1d718781689a36ed5231a35ad1a524",
-      "editorCompatibility": "6000.0.0a1",
-      "version": "17.0.3",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@fdda01c80fe3",
+      "fingerprint": "fdda01c80fe3156555919c7f18ff421792d1b592",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "17.5.0",
       "source": "builtin",
       "testable": false
     },
-    "com.unity.nuget.mono-cecil@1.11.5": {
+    "com.unity.nuget.mono-cecil@1.11.6": {
       "name": "com.unity.nuget.mono-cecil",
       "displayName": "Mono Cecil",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.nuget.mono-cecil@d78732e851eb",
-      "fingerprint": "d78732e851eb42273c8e4d97993d3a94b207e570",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.nuget.mono-cecil@ecb9724e46ff",
+      "fingerprint": "ecb9724e46fff855c46a4f37f0a3377a3cfffc06",
       "editorCompatibility": "2019.4.0a1",
-      "version": "1.11.5",
+      "version": "1.11.6",
       "source": "registry",
       "testable": false
     },
-    "com.unity.burst@1.8.25": {
+    "com.unity.burst@1.8.29": {
       "name": "com.unity.burst",
       "displayName": "Burst",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.burst@1df634d836b8",
-      "fingerprint": "1df634d836b8106f13dc82401a91b336d615a874",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.8.25",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.burst@6bb9aca3ef38",
+      "fingerprint": "6bb9aca3ef382e98bd0c1e4ab5fc74380c16095f",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.8.29",
       "source": "registry",
       "testable": false
     },
-    "com.unity.mathematics@1.3.2": {
+    "com.unity.mathematics@1.4.0": {
       "name": "com.unity.mathematics",
       "displayName": "Mathematics",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.mathematics@8017b507cc74",
-      "fingerprint": "8017b507cc74bf0a1dd14b18aa860569f807314d",
-      "editorCompatibility": "2021.3.0a1",
-      "version": "1.3.2",
-      "source": "registry",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.mathematics@981956d94fb6",
+      "fingerprint": "981956d94fb67524c64303c45a850c84830359e9",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "1.4.0",
+      "source": "builtin",
       "testable": false
     },
-    "com.unity.profiling.core@1.0.2": {
+    "com.unity.profiling.core@1.0.3": {
       "name": "com.unity.profiling.core",
       "displayName": "Unity Profiling Core API",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.profiling.core@aac7b93912bc",
-      "fingerprint": "aac7b93912bc5df5fe06b04ff1b758493cdc2346",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.profiling.core@8a49f7027d06",
+      "fingerprint": "8a49f7027d0618e2cb86aa9e4ed5fb4392e8121a",
       "editorCompatibility": "2020.1.0a1",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "source": "registry",
       "testable": false
     },
-    "com.unity.2d.common@11.0.1": {
+    "com.unity.2d.common@14.0.1": {
       "name": "com.unity.2d.common",
       "displayName": "2D Common",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.2d.common@dd402daace1b",
-      "fingerprint": "dd402daace1b7dbeb70cb9e7ae044cc4b10f989a",
-      "editorCompatibility": "6000.2.0a9",
-      "version": "11.0.1",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.2d.common@73badf92ba8b",
+      "fingerprint": "73badf92ba8b0f382c4b25d75c8309bbcde3e333",
+      "editorCompatibility": "6000.5.0a1",
+      "version": "14.0.1",
       "source": "registry",
       "testable": false
     },
-    "com.unity.services.deployment.api@1.1.2": {
+    "com.unity.services.deployment.api@1.1.3": {
       "name": "com.unity.services.deployment.api",
       "displayName": "Deployment API",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.services.deployment.api@3c4a519a9319",
-      "fingerprint": "3c4a519a93193e78e83f6d2fb2dc3f92eb24be4e",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.services.deployment.api@9becf6da0f1a",
+      "fingerprint": "9becf6da0f1ab8679d1ec6f21c02255fb119db4f",
       "editorCompatibility": "2021.3.0a1",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "source": "registry",
       "testable": false
     },
-    "com.unity.test-framework.performance@3.2.0": {
+    "com.unity.test-framework.performance@3.5.0": {
       "name": "com.unity.test-framework.performance",
       "displayName": "Performance testing API",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.test-framework.performance@0840f58e4562",
-      "fingerprint": "0840f58e45624f7677679a0f8b6a5137689e607f",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.test-framework.performance@8b56083ec0f0",
+      "fingerprint": "8b56083ec0f03c33121bea5c806c91b0fa2f2b69",
       "editorCompatibility": "2020.3.0a1",
-      "version": "3.2.0",
+      "version": "3.5.0",
       "source": "registry",
       "testable": false
     },
-    "com.unity.searcher@4.9.3": {
+    "com.unity.searcher@4.9.4": {
       "name": "com.unity.searcher",
       "displayName": "Searcher",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.searcher@1e17ce91558d",
-      "fingerprint": "1e17ce91558d1d9127554adc03d275f39a7466a2",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Library\\PackageCache\\com.unity.searcher@d45a78918735",
+      "fingerprint": "d45a78918735dd5b1de2247c6e3567c60aa24115",
       "editorCompatibility": "2019.1.0a1",
-      "version": "4.9.3",
+      "version": "4.9.4",
       "source": "registry",
-      "testable": false
-    },
-    "com.unity.rendering.light-transport@1.0.1": {
-      "name": "com.unity.rendering.light-transport",
-      "displayName": "Unity Light Transport Library",
-      "resolvedPath": "C:\\Unity Projects\\Unity Projects\\Dropper\\Dropper\\Library\\PackageCache\\com.unity.rendering.light-transport@2c9279f90d7c",
-      "fingerprint": "2c9279f90d7c8dfb6e76e3f90b6b3be1cafabfbc",
-      "editorCompatibility": "2023.3.0b1",
-      "version": "1.0.1",
-      "source": "builtin",
       "testable": false
     }
   }

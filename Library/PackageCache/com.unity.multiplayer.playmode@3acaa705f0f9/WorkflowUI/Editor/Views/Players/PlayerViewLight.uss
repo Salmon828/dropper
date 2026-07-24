@@ -1,7 +1,0 @@
-.dotgray #Dot{
-    background-color: rgba(85, 85, 85, 0.5);
-}
-
-.dotgreen #Dot{
-    background-color: #008126;
-}

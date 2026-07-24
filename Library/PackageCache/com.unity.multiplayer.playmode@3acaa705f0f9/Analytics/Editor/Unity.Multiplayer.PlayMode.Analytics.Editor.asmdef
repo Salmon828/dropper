@@ -1,6 +1,0 @@
-{
-  "name": "Unity.Multiplayer.PlayMode.Analytics.Editor",
-  "rootNamespace":"Unity.Multiplayer.PlayMode.Analytics.Editor",
-  "includePlatforms": [
-    "Editor"]
-}

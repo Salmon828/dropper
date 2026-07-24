@@ -17,17 +17,14 @@
     "2": {
       "Name": "Player 2",
       "Tags": [],
-      "Active": true,
+      "Active": false,
       "Index": 2,
       "Type": 1,
       "PlayerIdentifier": {
         "Guid": "bc2e4b67-d1a5-41d7-81f8-f64cdcea6730"
       },
       "TypeDependentPlayerInfo": {
-        "VirtualProjectIdentifier": {
-          "m_Id": "8632785e",
-          "m_Prefix": "mppm"
-        }
+        "VirtualProjectIdentifier": null
       },
       "MultiplayerRole": 3
     },
@@ -41,10 +38,7 @@
         "Guid": "62a04116-0533-47d2-8a32-e37551892d66"
       },
       "TypeDependentPlayerInfo": {
-        "VirtualProjectIdentifier": {
-          "m_Id": "7f40c940",
-          "m_Prefix": "mppm"
-        }
+        "VirtualProjectIdentifier": null
       },
       "MultiplayerRole": 3
     },
