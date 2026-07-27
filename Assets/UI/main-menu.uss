@@ -38,3 +38,16 @@
     color: rgb(255, 255, 255);
     font-size: 22px;
 }
+
+.letter {
+    opacity: 0;
+    translate: 0 20px;
+    transition-property: opacity, translate;
+    transition-duration: 2s, 2s;
+    transition-timing-function: ease-out, ease-out;
+}
+
+.letter-shown {
+    opacity: 1;
+    translate: 0 0;
+}

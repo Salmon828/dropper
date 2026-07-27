@@ -1,19 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/main-menu.uss?fileID=7433441132597879392&amp;guid=9ed1fd8fc508cae4fbd316b26ef55c78&amp;type=3#main-menu" />
+    <Style src="project://database/Assets/UI/main-menu.uss?fileID=7433441132597879392&amp;guid=9ed1fd8fc508cae4fbd316b26ef55c78&amp;type=3#main-menu"/>
     <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
+        <ui:Image name="Title" class="letter" style="background-image: url(&quot;project://database/Assets/UI/droppertitle.png?fileID=2800000&amp;guid=bc557cba71c2fa64c88f6448380effbd&amp;type=3#droppertitle&quot;); height: 286px; width: 1316px; margin-bottom: 81px; display: flex;"/>
         <ui:VisualElement name="main" class="menu" style="flex-grow: 1; width: 512px; height: auto; min-height: auto; max-height: 537px; display: flex;">
-            <ui:Button text="Play" name="PlayButton" class="unity-button" />
-            <ui:Button text="Options" name="OptionsButton" class="unity-button" />
-            <ui:Button text="Quit" name="QuitButton" class="unity-button" />
+            <ui:Button text="PLAY" name="PlayButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:Button text="OPTIONS" name="OptionsButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:Button text="QUIT" name="QuitButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
         </ui:VisualElement>
         <ui:VisualElement name="color" enabled="true" class="menu" style="flex-grow: 1; width: 878px; justify-content: center; align-items: stretch; display: none; visibility: visible;">
-            <ui:SliderInt label="Red" value="255" high-value="255" name="red" class="slider" />
-            <ui:SliderInt label="Green" value="255" high-value="255" name="green" class="slider" />
-            <ui:SliderInt label="Blue" value="255" high-value="255" name="blue" class="slider" style="position: relative;" />
-            <ui:VisualElement name="colorDisp" style="flex-grow: 1; flex-shrink: 0; flex-direction: column; width: 77px; height: auto; max-height: 56px; min-width: auto; max-width: none; justify-content: flex-end; align-self: center; top: 20%; background-color: rgb(255, 255, 255);" />
-            <ui:Label text="255,255,255" name="rgbValues" style="color: rgb(255, 255, 255); font-size: 22px; -unity-text-align: upper-center; top: -48px;" />
-            <ui:Label text="Current Color" name="current" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; top: 5%; font-size: 23px;" />
-            <ui:Button text="Back" name="colorBack" class="unity-button" style="width: 169px; max-height: 42px; top: 270px; font-size: 29px;" />
+            <ui:SliderInt label="Red" value="255" high-value="255" name="red" class="slider" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:SliderInt label="Green" value="255" high-value="255" name="green" class="slider" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:SliderInt label="Blue" value="255" high-value="255" name="blue" class="slider" style="position: relative; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:VisualElement name="colorDisp" style="flex-grow: 1; flex-shrink: 0; flex-direction: column; width: 77px; height: auto; max-height: 56px; min-width: auto; max-width: none; justify-content: flex-end; align-self: center; top: 20%; background-color: rgb(255, 255, 255);"/>
+            <ui:Label text="255,255,255" name="rgbValues" style="color: rgb(255, 255, 255); font-size: 22px; -unity-text-align: upper-center; top: -48px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:Label text="Current Color" name="current" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; top: 5%; font-size: 23px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+            <ui:Button text="Back" name="colorBack" class="unity-button" style="width: 169px; max-height: 42px; top: 270px; font-size: 29px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

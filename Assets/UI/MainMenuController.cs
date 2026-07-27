@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField]
     private VisualElement ui;
 
     private Button playButton, optionsButton, quitButton, colorBack;
@@ -14,6 +13,7 @@ public class MainMenuController : MonoBehaviour
     public InputActionAsset asset;
     private SliderInt red, green, blue;
     private Label rgbVals;
+    private VisualElement letterElement;
 
     private void Awake()
     {
@@ -22,6 +22,9 @@ public class MainMenuController : MonoBehaviour
 
     private void OnEnable()
     {
+        letterElement = ui.Q<Image>("Title");
+        ui.schedule.Execute(RevealTitle).StartingIn(2000);
+
         mainMenu = ui.Q<VisualElement>("main");
         playButton = ui.Q<Button>("PlayButton");
         playButton.clicked += OnPlayButtonClicked;
@@ -59,10 +62,16 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //StartCoroutine(EnableAndLoad());
     }
+
+    private void RevealTitle()
+    {
+        letterElement.AddToClassList("letter-shown");
+    }
     
     private void OnOptionsButtonClicked()
     {
         mainMenu.style.display = DisplayStyle.None;
+        letterElement.style.display = DisplayStyle.None;
         colorMenu.style.display = DisplayStyle.Flex;
     }
 
@@ -74,6 +83,7 @@ public class MainMenuController : MonoBehaviour
     private void OnColorBackClicked()
     {
         mainMenu.style.display = DisplayStyle.Flex;
+        letterElement.style.display = DisplayStyle.Flex;
         colorMenu.style.display = DisplayStyle.None;
         PlayerPrefs.SetInt("p1R", red.value);
         PlayerPrefs.SetInt("p1G", green.value);
