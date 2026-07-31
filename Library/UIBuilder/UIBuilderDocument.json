@@ -17,47 +17,47 @@
                     {
                         "m_StyleSheet": {
                             "fileID": 7433441132597879392,
-                            "guid": "9ed1fd8fc508cae4fbd316b26ef55c78",
+                            "guid": "4c63f901867219649b929717f4d7fd14",
                             "type": 3
                         },
-                        "m_ContentHash": 1808085810,
-                        "m_UssPreview": ":root {\r\n}\r\n\r\n.panel {\r\n    background-color: rgb(0, 12, 36);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: flex-end;\r\n}\r\n\r\n.menu {\r\n    background-color: rgb(17, 28, 61);\r\n}\r\n\r\n.unity-button {\r\n    flex-grow: 1;\r\n    margin-top: 32px;\r\n    margin-right: 32px;\r\n    margin-bottom: 32px;\r\n    margin-left: 32px;\r\n    padding-top: 0;\r\n    padding-right: 0;\r\n    padding-bottom: 0;\r\n    padding-left: 0;\r\n    flex-shrink: 0;\r\n    font-size: 47px;\r\n}\r\n\r\n.unity-button:hover {\r\n    background-color: rgb(30, 121, 213);\r\n}\r\n\r\n.slider {\r\n    margin-top: 5px;\r\n    margin-right: 5px;\r\n    margin-bottom: 5px;\r\n    margin-left: 5px;\r\n    color: rgb(255, 255, 255);\r\n    font-size: 22px;\r\n}\r\n\r\n.letter {\r\n    opacity: 0;\r\n    translate: 0 20px;\r\n    transition-property: opacity, translate;\r\n    transition-duration: 2s, 2s;\r\n    transition-timing-function: ease-out, ease-out;\r\n}\r\n\r\n.letter-shown {\r\n    opacity: 1;\r\n    translate: 0 0;\r\n}\r\n",
-                        "m_OldPath": "Assets/UI/main-menu.uss"
+                        "m_ContentHash": 416582390,
+                        "m_UssPreview": ":root {\r\n}\r\n\r\n.row-text {\r\n    -unity-font-definition: url(\"project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&guid=d990ffd30b2c13544a3882ffcdf5a2af&type=3#Pix32\");\r\n    font-size: 78px;\r\n    color: rgb(255, 255, 255);\r\n}\r\n\r\n.row {\r\n    background-color: rgb(0, 255, 4);\r\n}\r\n\r\n\r\n",
+                        "m_OldPath": "Assets/UI/lobbby-row.uss"
                     }
                 ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/MainMenu.uxml",
-                "m_UxmlPreview": "<ui:UXML xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/main-menu.uss?fileID=7433441132597879392&amp;guid=9ed1fd8fc508cae4fbd316b26ef55c78&amp;type=3#main-menu\"/>\r\n    <ui:VisualElement name=\"Panel\" class=\"panel\" style=\"flex-grow: 1;\">\r\n        <ui:Image name=\"Title\" class=\"letter\" style=\"background-image: url(&quot;project://database/Assets/UI/droppertitle.png?fileID=2800000&amp;guid=bc557cba71c2fa64c88f6448380effbd&amp;type=3#droppertitle&quot;); height: 286px; width: 1316px; margin-bottom: 81px; display: flex;\"/>\r\n        <ui:VisualElement name=\"main\" class=\"menu\" style=\"flex-grow: 1; width: 512px; height: auto; min-height: auto; max-height: 537px; display: flex;\">\r\n            <ui:Button text=\"PLAY\" name=\"PlayButton\" class=\"unity-button\" style=\"-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:Button text=\"OPTIONS\" name=\"OptionsButton\" class=\"unity-button\" style=\"-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:Button text=\"QUIT\" name=\"QuitButton\" class=\"unity-button\" style=\"-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n        </ui:VisualElement>\r\n        <ui:VisualElement name=\"color\" enabled=\"true\" class=\"menu\" style=\"flex-grow: 1; width: 878px; justify-content: center; align-items: stretch; display: none; visibility: visible;\">\r\n            <ui:SliderInt label=\"Red\" value=\"255\" high-value=\"255\" name=\"red\" class=\"slider\" style=\"-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:SliderInt label=\"Green\" value=\"255\" high-value=\"255\" name=\"green\" class=\"slider\" style=\"-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:SliderInt label=\"Blue\" value=\"255\" high-value=\"255\" name=\"blue\" class=\"slider\" style=\"position: relative; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:VisualElement name=\"colorDisp\" style=\"flex-grow: 1; flex-shrink: 0; flex-direction: column; width: 77px; height: auto; max-height: 56px; min-width: auto; max-width: none; justify-content: flex-end; align-self: center; top: 20%; background-color: rgb(255, 255, 255);\"/>\r\n            <ui:Label text=\"255,255,255\" name=\"rgbValues\" style=\"color: rgb(255, 255, 255); font-size: 22px; -unity-text-align: upper-center; top: -48px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:Label text=\"Current Color\" name=\"current\" style=\"color: rgb(255, 255, 255); -unity-text-align: upper-center; top: 5%; font-size: 23px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n            <ui:Button text=\"Back\" name=\"colorBack\" class=\"unity-button\" style=\"width: 169px; max-height: 42px; top: 270px; font-size: 29px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);\"/>\r\n        </ui:VisualElement>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
-                "m_ContentHash": 1174631726,
+                "m_OpenendVisualTreeAssetOldPath": "Assets/UI/LobbyRow.uxml",
+                "m_UxmlPreview": "<ui:UXML xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ui=\"UnityEngine.UIElements\" xmlns:uie=\"UnityEditor.UIElements\" noNamespaceSchemaLocation=\"../../UIElementsSchema/UIElements.xsd\" editor-extension-mode=\"False\">\r\n    <Style src=\"project://database/Assets/UI/lobbby-row.uss?fileID=7433441132597879392&amp;guid=4c63f901867219649b929717f4d7fd14&amp;type=3#lobbby-row\"/>\r\n    <ui:VisualElement name=\"VisualElement\" style=\"flex-grow: 0; flex-direction: row; justify-content: space-between;\">\r\n        <ui:Label text=\"Label\" name=\"session-name\" class=\"row-text\"/>\r\n        <ui:Label text=\"Label\" name=\"session-count\" class=\"row-text\" style=\"right: auto;\"/>\r\n    </ui:VisualElement>\r\n</ui:UXML>\r\n",
+                "m_ContentHash": -1949640842,
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "7d7132118f7b7b5419d49d68b1bf344e",
+                    "guid": "0f51ec37a5b97a14cbf7a0ba0f11d869",
                     "type": 3
                 },
                 "m_TemplateAssetId": 0,
                 "m_TemplateAssetIndex": -1,
                 "m_ActiveStyleSheet": {
                     "fileID": 7433441132597879392,
-                    "guid": "9ed1fd8fc508cae4fbd316b26ef55c78",
+                    "guid": "4c63f901867219649b929717f4d7fd14",
                     "type": 3
                 },
                 "m_Settings": {
-                    "UxmlGuid": "7d7132118f7b7b5419d49d68b1bf344e",
-                    "UxmlPath": "Assets/UI/MainMenu.uxml",
+                    "UxmlGuid": "0f51ec37a5b97a14cbf7a0ba0f11d869",
+                    "UxmlPath": "Assets/UI/LobbyRow.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
-                    "CanvasWidth": 1920,
-                    "CanvasHeight": 1080,
-                    "MatchGameView": true,
-                    "ZoomScale": 0.25,
+                    "CanvasWidth": 920,
+                    "CanvasHeight": 122,
+                    "MatchGameView": false,
+                    "ZoomScale": 0.75,
                     "PanOffset": {
-                        "x": 130.544921875,
-                        "y": 37.388946533203128
+                        "x": 442.2908935546875,
+                        "y": 211.17062377929688
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,
                     "CameraModeCanvasBackgroundOpacity": 1.0,
-                    "EnableCanvasBackground": true,
-                    "CanvasBackgroundMode": 2,
+                    "EnableCanvasBackground": false,
+                    "CanvasBackgroundMode": 0,
                     "CanvasBackgroundColor": {
                         "r": 0.0,
                         "g": 0.0,
@@ -68,7 +68,7 @@
                         "instanceID": 0
                     },
                     "CanvasBackgroundImageScaleMode": 1,
-                    "CanvasBackgroundCameraName": "Main Camera"
+                    "CanvasBackgroundCameraName": ""
                 },
                 "m_OpenSubDocumentParentIndex": -1
             }

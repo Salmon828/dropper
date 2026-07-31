@@ -7,13 +7,21 @@ using UnityEngine.UIElements;
 public class MainMenuController : MonoBehaviour
 {
     private VisualElement ui;
-
-    private Button playButton, optionsButton, quitButton, colorBack;
-    private VisualElement colorMenu, mainMenu, colorDisp;
     public InputActionAsset asset;
+
+    // Main menu variables
+    private VisualElement mainMenu, letterElement;
+    private Button playButton, optionsButton, quitButton;
+
+    // Color menu variables
+    private VisualElement colorMenu, colorDisp;
     private SliderInt red, green, blue;
     private Label rgbVals;
-    private VisualElement letterElement;
+    private Button colorBack;
+
+    // Mode select variables
+    private VisualElement modeMenu;
+    private Button localButton, onlineButton, vscpuButton;
 
     private void Awake()
     {
@@ -22,6 +30,7 @@ public class MainMenuController : MonoBehaviour
 
     private void OnEnable()
     {
+        // Main
         letterElement = ui.Q<Image>("Title");
         ui.schedule.Execute(RevealTitle).StartingIn(2000);
 
@@ -35,6 +44,18 @@ public class MainMenuController : MonoBehaviour
         quitButton = ui.Q<Button>("QuitButton");
         quitButton.clicked += OnQuitButtonClicked;
 
+        // Mode
+        modeMenu = ui.Q<VisualElement>("gamemodes");
+        localButton = ui.Q<Button>("LocalButton");
+        localButton.clicked += OnLocalButtonClicked;
+
+        onlineButton = ui.Q<Button>("OnlineButton"); 
+        onlineButton.clicked += OnOnlineButtonClicked;
+
+        vscpuButton = ui.Q<Button>("VsCPUButton");
+        vscpuButton.clicked += OnVsCPUButtonClicked;
+
+        // Color
         colorMenu = ui.Q<VisualElement>("color");
         colorBack = ui.Q<Button>("colorBack");
         colorBack.clicked += OnColorBackClicked;
@@ -59,8 +80,23 @@ public class MainMenuController : MonoBehaviour
 
     private void OnPlayButtonClicked()
     {
+        hideMain();
+        modeMenu.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnLocalButtonClicked()
+    {
+
+    }
+
+    private void OnOnlineButtonClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
+    private void OnVsCPUButtonClicked()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //StartCoroutine(EnableAndLoad());
     }
 
     private void RevealTitle()
@@ -70,8 +106,7 @@ public class MainMenuController : MonoBehaviour
     
     private void OnOptionsButtonClicked()
     {
-        mainMenu.style.display = DisplayStyle.None;
-        letterElement.style.display = DisplayStyle.None;
+        hideMain();
         colorMenu.style.display = DisplayStyle.Flex;
     }
 
@@ -82,12 +117,23 @@ public class MainMenuController : MonoBehaviour
 
     private void OnColorBackClicked()
     {
-        mainMenu.style.display = DisplayStyle.Flex;
-        letterElement.style.display = DisplayStyle.Flex;
+        showMain();
         colorMenu.style.display = DisplayStyle.None;
         PlayerPrefs.SetInt("p1R", red.value);
         PlayerPrefs.SetInt("p1G", green.value);
         PlayerPrefs.SetInt("p1B", blue.value);
+    }
+
+    private void hideMain()
+    {
+        mainMenu.style.display = DisplayStyle.None;
+        letterElement.style.display = DisplayStyle.None;
+    }
+
+    private void showMain()
+    {
+        mainMenu.style.display = DisplayStyle.Flex;
+        letterElement.style.display = DisplayStyle.Flex;
     }
 
     // returns rgb string to set text to 

@@ -1,0 +1,14 @@
+:root {
+}
+
+.row-text {
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&guid=d990ffd30b2c13544a3882ffcdf5a2af&type=3#Pix32");
+    font-size: 78px;
+    color: rgb(255, 255, 255);
+}
+
+.row {
+    background-color: rgb(0, 255, 4);
+}
+
+

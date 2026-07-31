@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/lobbby-row.uss?fileID=7433441132597879392&amp;guid=4c63f901867219649b929717f4d7fd14&amp;type=3#lobbby-row"/>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; justify-content: space-between;">
+        <ui:Label text="Label" name="session-name" class="row-text"/>
+        <ui:Label text="Label" name="session-count" class="row-text" style="right: auto;"/>
+    </ui:VisualElement>
+</ui:UXML>

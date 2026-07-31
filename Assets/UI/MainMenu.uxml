@@ -1,11 +1,24 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/main-menu.uss?fileID=7433441132597879392&amp;guid=9ed1fd8fc508cae4fbd316b26ef55c78&amp;type=3#main-menu"/>
     <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
-        <ui:Image name="Title" class="letter" style="background-image: url(&quot;project://database/Assets/UI/droppertitle.png?fileID=2800000&amp;guid=bc557cba71c2fa64c88f6448380effbd&amp;type=3#droppertitle&quot;); height: 286px; width: 1316px; margin-bottom: 81px; display: flex;"/>
-        <ui:VisualElement name="main" class="menu" style="flex-grow: 1; width: 512px; height: auto; min-height: auto; max-height: 537px; display: flex;">
+        <ui:Image name="Title" class="letter" style="background-image: url(&quot;project://database/Assets/UI/droppertitle.png?fileID=2800000&amp;guid=bc557cba71c2fa64c88f6448380effbd&amp;type=3#droppertitle&quot;); height: 286px; width: 1316px; margin-bottom: 81px; display: none;"/>
+        <ui:VisualElement name="main" class="menu" style="flex-grow: 1; width: 512px; height: auto; min-height: auto; max-height: 537px; display: none;">
             <ui:Button text="PLAY" name="PlayButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
             <ui:Button text="OPTIONS" name="OptionsButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
             <ui:Button text="QUIT" name="QuitButton" class="unity-button" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="gamemodes" class="menu" style="flex-direction: column; bottom: 24%; display: none; width: 535px;">
+            <ui:Button text="LOCAL PLAY" name="LocalButton" class="unity-button gmode-button"/>
+            <ui:Button text="ONLINE" name="OnlineButton" class="gmode-button"/>
+            <ui:Button text="VS CPU" name="VsCPUButton" class="gmode-button"/>
+        </ui:VisualElement>
+        <ui:ListView name="LobbyList" virtualization-method="DynamicHeight" show-border="true" style="width: 1384px; height: 532px;"/>
+        <ui:VisualElement>
+            <ui:VisualElement name="online">
+                <ui:Button text="Host" name="HostButton" class="gmode-button"/>
+                <ui:Button text="Quick Join" name="QJButton" class="gmode-button"/>
+                <ui:Button text="Refresh" name="RefreshButton" class="gmode-button"/>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="color" enabled="true" class="menu" style="flex-grow: 1; width: 878px; justify-content: center; align-items: stretch; display: none; visibility: visible;">
             <ui:SliderInt label="Red" value="255" high-value="255" name="red" class="slider" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>
