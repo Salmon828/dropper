@@ -33,4 +33,16 @@ public class SessionManager : MonoBehaviour
         var session = await MultiplayerService.Instance.CreateSessionAsync(options);
         Debug.Log($"Session {session.Id} created! Join code: {session.Code}");
     }
+
+    public async Task JoinSessionWithId(string id)
+    {
+        try
+        {
+            await MultiplayerService.Instance.JoinSessionByIdAsync(id);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
 }
