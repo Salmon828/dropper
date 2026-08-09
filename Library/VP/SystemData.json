@@ -17,7 +17,7 @@
     "2": {
       "Name": "Player 2",
       "Tags": [],
-      "Active": true,
+      "Active": false,
       "Index": 2,
       "Type": 1,
       "PlayerIdentifier": {

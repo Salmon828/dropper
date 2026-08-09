@@ -15,6 +15,8 @@ public class OnlineGameManager : NetworkBehaviour
 
     [SerializeField]
     private GameObject trail;
+    [SerializeField]
+    private GameObject playerPrefab;
 
     NetworkVariable<float> timer = new NetworkVariable<float>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
@@ -57,7 +59,11 @@ public class OnlineGameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        if (IsServer) freeze.Value = true;
+        if (IsServer)
+        {
+            freeze.Value = true;
+            NetworkManager.SceneManager.OnLoadEventCompleted += OnGameSceneLoaded;
+        }
 
         // Clients react to score variable change
         if (IsClient)
@@ -83,8 +89,7 @@ public class OnlineGameManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-
-        if (NetworkManager.Singleton.ConnectedClientsList.Count == maxPlayers && !countDownHappened && rematchAllowed)
+        if (ArePlayersSpawned() && !countDownHappened && rematchAllowed)
         {
             // Players are connected and game is ready to start, **Modify later for lobbies**
 
@@ -98,8 +103,6 @@ public class OnlineGameManager : NetworkBehaviour
                 countDownHappened = true;
                 timer.Value = 0;
             }
-
-           
 
         }
     }
@@ -121,6 +124,29 @@ public class OnlineGameManager : NetworkBehaviour
             p.netDirection.Value = spawnDirection[currentClient];
             currentClient++;
         }
+    }
+    private void OnGameSceneLoaded(string sceneName, LoadSceneMode mode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        if (!IsServer) return;
+
+        int i = 0;
+        foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            var playerObj = Instantiate(playerPrefab, spawnPositions[i], Quaternion.identity);
+            playerObj.GetComponent<NetworkObject>().SpawnAsPlayerObject(uid);
+            i++;
+        }
+    }
+
+    private bool ArePlayersSpawned()
+    {
+        int count = 0;
+        foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(uid) != null)
+                count++;
+        }
+        return count == maxPlayers;
     }
 
     void onRematchChanged(bool oldVal, bool newVal)

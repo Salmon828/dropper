@@ -1387,6 +1387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   ShowTopMostFoldoutHeaderGroup: 1
   trail: {fileID: 0}
+  playerPrefab: {fileID: 1841899807155261919, guid: 85818db488010ee4d9fe738ba5b86416, type: 3}
   freeze:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
