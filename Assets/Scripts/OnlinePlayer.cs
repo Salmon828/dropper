@@ -10,6 +10,7 @@ public class OnlinePlayer : NetworkBehaviour
 {
     public NetworkVariable<Vector3> netDirection = new NetworkVariable<Vector3>();
     public NetworkVariable<int> playerNumber = new NetworkVariable<int>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
+    public NetworkVariable<Color32> playerColor = new NetworkVariable<Color32>(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Server);
 
     InputAction Up, Down, Left, Right;
     public InputActionAsset actionAsset;
@@ -53,12 +54,23 @@ public class OnlinePlayer : NetworkBehaviour
             playerNumber.Value = index;
         }
         Debug.Log(playerNumber.Value);
-        manager = GameObject.Find("OnlineGameManager").GetComponent<OnlineGameManager>();
+        if (manager == null)
+            manager = FindAnyObjectByType<OnlineGameManager>();
 
         // To allow first frame movement
         sendTimer = sendInterval;
 
         rb = GetComponent<Rigidbody2D>();
+
+        // Color handling
+        if (IsOwner)
+        {
+            Debug.Log($"{OwnerClientId} read {PlayerPrefs.GetInt("p1R")},{PlayerPrefs.GetInt("p1G")},{PlayerPrefs.GetInt("p1B")}");
+            changeColorServerRpc(new Color32((byte)PlayerPrefs.GetInt("p1R"), (byte)PlayerPrefs.GetInt("p1G"), (byte)PlayerPrefs.GetInt("p1B"), 255));
+        }
+        playerColor.OnValueChanged += ApplyColor;
+        ApplyColor(playerColor.Value, playerColor.Value);
+
 
         // Only let the player control themselves
         if (IsOwner)
@@ -147,6 +159,12 @@ public class OnlinePlayer : NetworkBehaviour
         netDirection.Value = newDir;
     }
 
+    [ServerRpc]
+    void changeColorServerRpc(Color32 newColor)
+    {
+        playerColor.Value = newColor;
+    }
+
     private void clearTrails()
     {
         if (!IsServer) return;
@@ -162,6 +180,13 @@ public class OnlinePlayer : NetworkBehaviour
                 t.Despawn(true);
             }
         }
+    }
+
+    // Applys the current color set in the color networkvariable
+    private void ApplyColor(Color32 prevColor, Color32 newColor)
+    {
+        GetComponent<SpriteRenderer>().color = newColor;
+        trailPrefab.GetComponent<SpriteRenderer>().color = newColor;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
