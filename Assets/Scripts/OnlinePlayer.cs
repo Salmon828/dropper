@@ -65,7 +65,7 @@ public class OnlinePlayer : NetworkBehaviour
         // Color handling
         if (IsOwner)
         {
-            Debug.Log($"{OwnerClientId} read {PlayerPrefs.GetInt("p1R")},{PlayerPrefs.GetInt("p1G")},{PlayerPrefs.GetInt("p1B")}");
+            //Debug.Log($"{OwnerClientId} read {PlayerPrefs.GetInt("p1R")},{PlayerPrefs.GetInt("p1G")},{PlayerPrefs.GetInt("p1B")}");
             changeColorServerRpc(new Color32((byte)PlayerPrefs.GetInt("p1R"), (byte)PlayerPrefs.GetInt("p1G"), (byte)PlayerPrefs.GetInt("p1B"), 255));
         }
         playerColor.OnValueChanged += ApplyColor;
@@ -139,6 +139,7 @@ public class OnlinePlayer : NetworkBehaviour
                 var t = Instantiate(trailPrefab, spawnPos, transform.rotation);
                 var marker = t.GetComponent<SpawnMarker>();
                 marker.SpawnerClientId = (ulong)playerNumber.Value;
+                marker.trailColor.Value = playerColor.Value; // Set before Spawn so it rides the spawn payload
                 t.Spawn();
             }
         }
@@ -186,7 +187,6 @@ public class OnlinePlayer : NetworkBehaviour
     private void ApplyColor(Color32 prevColor, Color32 newColor)
     {
         GetComponent<SpriteRenderer>().color = newColor;
-        trailPrefab.GetComponent<SpriteRenderer>().color = newColor;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

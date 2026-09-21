@@ -69,7 +69,7 @@ public class Bot : MonoBehaviour
         {
             direction = Vector3.zero;
             this.enabled = false;
-            manager.collisonDetection(false);
+            manager.collisonDetection(2);
         }
     }
 

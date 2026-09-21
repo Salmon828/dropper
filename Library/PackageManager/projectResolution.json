@@ -6,7 +6,8 @@
   "inputs": [
     "C:\\Users\\Sam\\dropper\\dropper\\Packages\\manifest.json",
     "C:\\Users\\Sam\\dropper\\dropper\\Packages\\packages-lock.json",
-    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.5f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
+    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.5f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1",
+    "C:\\Users\\Sam\\dropper\\dropper\\Packages\\com.mibdev.fullscreen-editor\\package.json"
   ],
   "outputs": {
     "com.unity.2d.animation@15.1.0": {
@@ -490,6 +491,15 @@
       "version": "1.0.0",
       "source": "builtin",
       "testable": false
+    },
+    "com.mibdev.fullscreen-editor@file:C:\\Users\\Sam\\dropper\\dropper\\Packages\\com.mibdev.fullscreen-editor": {
+      "name": "com.mibdev.fullscreen-editor",
+      "displayName": "Fullscreen Editor",
+      "resolvedPath": "C:\\Users\\Sam\\dropper\\dropper\\Packages\\com.mibdev.fullscreen-editor",
+      "editorCompatibility": "2019.4.0a1",
+      "version": "2.2.10",
+      "source": "embedded",
+      "testable": true
     },
     "com.unity.modules.subsystems@1.0.0": {
       "name": "com.unity.modules.subsystems",

@@ -8,6 +8,8 @@ public class PlayerSquare : MonoBehaviour
     public Vector3 direction = Vector3.right;
     public bool isP1 = true;
 
+    public bool freeze = false;
+
     public InputActionAsset actionAsset;
     InputAction Up, Down, Left, Right;
 
@@ -34,11 +36,6 @@ public class PlayerSquare : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-    }
-
-
     // Update is called once per frame
     void Update()
     { 
@@ -62,16 +59,31 @@ public class PlayerSquare : MonoBehaviour
         {
             direction = Vector3.right;
         }
+        if (!freeze)
+        {
             gameObject.transform.position += direction * moveSpeed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision);
+        int player;
+        if (isP1) player = 1; else player = 2;
         if (collision.tag == "Obstacle")
         {
             direction = Vector3.zero;
-            manager.collisonDetection(isP1);
-            
+            manager.collisonDetection(player);
+
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.collider.tag);
+        if (collision.collider.tag == "Player")
+        {
+            manager.collisonDetection(3);
         }
     }
 

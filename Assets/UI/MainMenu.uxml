@@ -12,11 +12,14 @@
             <ui:Button text="ONLINE" name="OnlineButton" class="gmode-button"/>
             <ui:Button text="VS CPU" name="VsCPUButton" class="gmode-button"/>
         </ui:VisualElement>
-        <ui:ListView name="LobbyList" virtualization-method="DynamicHeight" show-border="true" style="width: 1384px; height: 532px; display: none;"/>
-        <ui:VisualElement name="online" style="display: none;">
-            <ui:Button text="Host" name="HostButton" class="gmode-button"/>
-            <ui:Button text="Quick Join" name="QJButton" class="gmode-button"/>
-            <ui:Button text="Refresh" name="RefreshButton" class="gmode-button"/>
+        <ui:VisualElement name="online" style="display: none; align-items: center;">
+            <ui:ListView name="LobbyList" virtualization-method="DynamicHeight" show-border="true" style="width: 1384px; height: 532px; display: flex;"/>
+            <ui:Label text="Players: 1/2" name="Playercount" class="gmode-button" style="color: rgb(255, 255, 255); visibility: visible; position: absolute; left: -19%; bottom: 0; display: none;"/>
+            <ui:VisualElement name="onlinebuttons" style="flex-grow: 1; align-items: stretch;">
+                <ui:Button text="Host" name="HostButton" class="gmode-button"/>
+                <ui:Button text="Quick Join" name="QJButton" class="gmode-button"/>
+                <ui:Button text="Refresh" name="RefreshButton" class="gmode-button"/>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="color" enabled="true" class="menu" style="flex-grow: 1; width: 878px; justify-content: center; align-items: stretch; display: none; visibility: visible;">
             <ui:SliderInt label="Red" value="255" high-value="255" name="red" class="slider" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&amp;guid=d990ffd30b2c13544a3882ffcdf5a2af&amp;type=3#Pix32&quot;);"/>

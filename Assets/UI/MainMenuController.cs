@@ -25,7 +25,6 @@ public class MainMenuController : MonoBehaviour
 
     // Online menu reference
     private VisualElement onlineMenu;
-    private ListView lobbyList;
 
     private void Awake()
     {
@@ -61,7 +60,6 @@ public class MainMenuController : MonoBehaviour
 
         // Online
         onlineMenu = ui.Q<VisualElement>("online");
-        lobbyList = ui.Q<ListView>("LobbyList");
 
         // Color
         colorMenu = ui.Q<VisualElement>("color");
@@ -94,19 +92,18 @@ public class MainMenuController : MonoBehaviour
 
     private void OnLocalButtonClicked()
     {
-
+        SceneManager.LoadScene(3);
     }
 
     private void OnOnlineButtonClicked()
     {
         modeMenu.style.display = DisplayStyle.None;
         onlineMenu.style.display = DisplayStyle.Flex;
-        lobbyList.style.display = DisplayStyle.Flex;
     }
 
     private void OnVsCPUButtonClicked()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
 
     private void RevealTitle()
