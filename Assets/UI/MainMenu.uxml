@@ -47,7 +47,7 @@
                     <ui:Label text="255, 0, 0" name="rgbValues2" style="color: rgb(255, 255, 255); font-size: 22px; -unity-text-align: upper-center; margin-top: 8px;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="Back" name="colorBack" class="unity-button" style="width: 169px; max-height: 42px; flex-grow: 0; font-size: 29px;"/>
+            <ui:Button text="Back" name="colorBack" class="unity-button" style="width: 169px; max-height: 60px; flex-grow: 0; font-size: 29px; height: 44px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

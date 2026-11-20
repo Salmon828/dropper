@@ -95,7 +95,7 @@ public class Manager : MonoBehaviour
     void dropTrail(GameObject player, Color color)
     {
         GameObject tinst = Instantiate(trail, new Vector3(player.transform.position.x, player.transform.position.y, 0.0f), Quaternion.identity);
-        tinst.GetComponent<SpriteRenderer>().color = color;
+        tinst.GetComponent<Trail>().Init(color, solid: true);
     }
 
     public void collisonDetection(int player)

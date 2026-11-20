@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-using System.Linq;
+using UnityEngine.Pool;
 
 
 // Handles score, gamestate 
@@ -44,6 +44,12 @@ public class OnlineGameManager : NetworkBehaviour
 
     [SerializeField]
     private ParticleSystem crashParticles; // Template, copied for each crash
+
+    [SerializeField]
+    private Trail trailPrefab; // The plain Trail prefab (same one local uses)
+    private ObjectPool<Trail> trailPool; // Reuses blocks between rounds instead of create/destroy
+    private readonly List<Trail> activeTrails = new List<Trail>();
+    private Transform trailHolder; // Keeps the Hierarchy tidy
 
     public int maxPlayers = 2;
 
@@ -248,12 +254,42 @@ public class OnlineGameManager : NetworkBehaviour
         roundResetting = false;
     }
 
-    // Moved here from OnlinePlayer, so trails stay visible during the pause
+    // Server only: clears every block on every client
     private void ClearTrails()
     {
-        foreach (var t in NetworkManager.SpawnManager.SpawnedObjectsList.ToList())
-            if (t != null && t.IsSpawned && t.TryGetComponent<SpawnMarker>(out _))
-                t.Despawn(true);
+        ClearTrailsRpc();
+    }
+
+    private void EnsureTrailPool()
+    {
+        if (trailPool != null) return;
+        trailHolder = new GameObject("Trails").transform;
+        trailPool = new ObjectPool<Trail>(
+            createFunc: () => Instantiate(trailPrefab, trailHolder),
+            actionOnGet: t => t.gameObject.SetActive(true),
+            actionOnRelease: t => t.gameObject.SetActive(false),
+            actionOnDestroy: t => Destroy(t.gameObject),
+            collectionCheck: false,
+            defaultCapacity: 256);
+    }
+
+    // Server calls this when a player drops a block; every client places a plain, non-networked block
+    [Rpc(SendTo.Everyone)]
+    public void DropTrailRpc(Vector2 position, Color32 color)
+    {
+        EnsureTrailPool();
+        var t = trailPool.Get();
+        t.transform.position = position;
+        t.Init(color, solid: IsServer); // Only the server checks collisions, so clients skip the physics
+        activeTrails.Add(t);
+    }
+
+    [Rpc(SendTo.Everyone)]
+    void ClearTrailsRpc()
+    {
+        if (trailPool == null) return;
+        foreach (var t in activeTrails) trailPool.Release(t);
+        activeTrails.Clear();
     }
 
     private void checkWin()

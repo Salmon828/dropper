@@ -1,18 +1,26 @@
 using UnityEngine;
 
+// A single trail block. Becomes solid after a short grace period, then does nothing per frame.
 public class Trail : MonoBehaviour
 {
-    private float timer;
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private float solidDelay = 0.2f; // Grace period so you don't hit your own new block
+    private BoxCollider2D col;
+    private SpriteRenderer sprite;
+
+    void Awake()
     {
-        if (timer < 0.2)
-        {
-            timer += Time.deltaTime;
-        }
-        else if (gameObject.GetComponent<BoxCollider2D>().enabled == false)
-        {
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        }
+        col = GetComponent<BoxCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
+
+    // solid = false skips collisions entirely (online clients only draw blocks, the server checks hits)
+    public void Init(Color color, bool solid)
+    {
+        sprite.color = color;
+        col.enabled = false;
+        CancelInvoke();                                  // In case this block came back from the pool
+        if (solid) Invoke(nameof(MakeSolid), solidDelay);
+    }
+
+    private void MakeSolid() => col.enabled = true;
 }

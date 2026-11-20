@@ -25,8 +25,6 @@ public class OnlinePlayer : NetworkBehaviour
     [SerializeField]
     private float dropRate = 0.3f; // Seconds between trail drops, same as local
     private float trailTimer = 0f;
-    [SerializeField]
-    private NetworkObject trailPrefab;
 
     [SerializeField]
     OnlineGameManager manager;
@@ -128,12 +126,7 @@ public class OnlinePlayer : NetworkBehaviour
             if (trailTimer >= dropRate)
             {
                 trailTimer = 0;
-                Vector3 spawnPos = transform.position;
-                var t = Instantiate(trailPrefab, spawnPos, transform.rotation);
-                var marker = t.GetComponent<SpawnMarker>();
-                marker.SpawnerClientId = (ulong)playerNumber.Value;
-                marker.trailColor.Value = playerColor.Value; // Set before Spawn so it rides the spawn payload
-                t.Spawn();
+                manager.DropTrailRpc(transform.position, playerColor.Value);
             }
         }
 
