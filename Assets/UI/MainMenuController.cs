@@ -22,6 +22,7 @@ public class MainMenuController : MonoBehaviour
     // Mode select variables
     private VisualElement modeMenu;
     private Button localButton, onlineButton, vscpuButton;
+    private Button modeBack;
 
     // Online menu reference
     private VisualElement onlineMenu;
@@ -58,6 +59,9 @@ public class MainMenuController : MonoBehaviour
         vscpuButton = ui.Q<Button>("VsCPUButton");
         vscpuButton.clicked += OnVsCPUButtonClicked;
 
+        modeBack = ui.Q<Button>("ModeBack");
+        modeBack.clicked += OnModeBackClicked;
+
         // Online
         onlineMenu = ui.Q<VisualElement>("online");
 
@@ -90,9 +94,17 @@ public class MainMenuController : MonoBehaviour
         modeMenu.style.display = DisplayStyle.Flex;
     }
 
+    private void OnModeBackClicked()
+    {
+        modeMenu.style.display = DisplayStyle.None;
+        showMain();
+    }
+
     private void OnLocalButtonClicked()
     {
-        SceneManager.LoadScene(3);
+        Manager.vsCPU = false;
+        Manager.ResetScores();
+        SceneManager.LoadScene("Game");
     }
 
     private void OnOnlineButtonClicked()
@@ -103,7 +115,9 @@ public class MainMenuController : MonoBehaviour
 
     private void OnVsCPUButtonClicked()
     {
-        SceneManager.LoadScene(1);
+        Manager.vsCPU = true;
+        Manager.ResetScores();
+        SceneManager.LoadScene("Game");
     }
 
     private void RevealTitle()

@@ -79,6 +79,23 @@ public class SessionManager : MonoBehaviour
         }
     }
 
+    // Called when the match starts, so the session drops off the lobby list and can't be joined mid-game.
+    public async Task LockSession()
+    {
+        if (ActiveSession == null || !ActiveSession.IsHost) return;
+        try
+        {
+            var host = ActiveSession.AsHost();
+            host.IsPrivate = true;
+            host.IsLocked = true;
+            await host.SavePropertiesAsync();
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e); // Not fatal, the game still starts
+        }
+    }
+
     // The host deletes the session so it stops showing up in the lobby list, a client just leaves it.
     public async Task LeaveSession()
     {

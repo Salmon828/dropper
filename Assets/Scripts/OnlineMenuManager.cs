@@ -26,6 +26,10 @@ public class OnlineMenuManager : MonoBehaviour
     private string selectedID; // Currently selected lobby's ID, used for joining.
     private Button hostButton, quickButton, refreshButton;
     private Label playerCountText;
+    private Button backButton;
+    private enum LobbyState { Browsing, Connecting, Hosting, Joined }
+    private LobbyState state = LobbyState.Browsing;
+    private bool InLobby => state == LobbyState.Hosting || state == LobbyState.Joined;
 
     private QuerySessionsResults listResults;
 
@@ -48,6 +52,8 @@ public class OnlineMenuManager : MonoBehaviour
         hostButton.clicked += OnHostButtonClicked;
         quickButton.clicked += OnQuickButtonClicked;
         refreshButton.clicked += OnRefreshButtonClicked;
+        backButton = ui.Q<Button>("OnlineBack");
+        backButton.clicked += OnBackClicked;
 
         // Uses the template uxml to create each row.
         lobbyList.makeItem = () => rowTemplate.Instantiate();
@@ -124,6 +130,7 @@ public class OnlineMenuManager : MonoBehaviour
         hostButton.clicked -= OnHostButtonClicked;
         quickButton.clicked -= OnQuickButtonClicked;
         refreshButton.clicked -= OnRefreshButtonClicked;
+        backButton.clicked -= OnBackClicked;
 
         UnbindEvents();
     }
@@ -132,6 +139,11 @@ public class OnlineMenuManager : MonoBehaviour
     {
         try
         { 
+            // Old selection may point at a lobby that no longer exists
+            lobbyList.ClearSelection();
+            selectedID = null;
+            quickButton.text = "Quick Join";
+
             var queryOptions = new QuerySessionsOptions(); // Used in the future for specific filters
             listResults = await MultiplayerService.Instance.QuerySessionsAsync(queryOptions);
             lobbyList.itemsSource = (System.Collections.IList)listResults.Sessions;
@@ -143,23 +155,39 @@ public class OnlineMenuManager : MonoBehaviour
         }
     }
 
+    // Greys out the online buttons while a host/join request is in flight
+    private void SetButtonsEnabled(bool on)
+    {
+        hostButton.SetEnabled(on);
+        quickButton.SetEnabled(on);
+        refreshButton.SetEnabled(on);
+        backButton.SetEnabled(on);
+    }
+
     private async void OnHostButtonClicked()
     {
+        if (state != LobbyState.Browsing) return;
+        state = LobbyState.Connecting;
+        SetButtonsEnabled(false);
         try
         {
             await Session.StartSessionAsHost();
-            BindEvents();
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+        state = Session.ActiveSession != null ? LobbyState.Hosting : LobbyState.Browsing;
+        SetButtonsEnabled(true);
+        BindEvents();
     }
 
-    private void OnStartGameClicked()
+    private async void OnStartGameClicked()
     {
         if (NetworkManager.Singleton.IsHost)
         {
+            hostButton.SetEnabled(false); // Stop double clicks while we wait on the service
+            await Session.LockSession();
             NetworkManager.Singleton.SceneManager.LoadScene("NetworkGame", LoadSceneMode.Single);
         }
     }
@@ -167,22 +195,74 @@ public class OnlineMenuManager : MonoBehaviour
     private async void OnQuickButtonClicked()
     {
         // Join room functionality
-        if (selectedID != null)
+        if (selectedID != null && state == LobbyState.Browsing)
         {
+            state = LobbyState.Connecting;
+            SetButtonsEnabled(false);
             try
             {
                await Session.JoinSessionWithId(selectedID);
-               BindEvents();
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
             }
+            state = Session.ActiveSession != null ? LobbyState.Joined : LobbyState.Browsing;
+            SetButtonsEnabled(true);
+            if (state == LobbyState.Browsing) RepopulateList(); // Join failed (e.g. lobby gone): refresh so it disappears
+            BindEvents();
         }
     }
 
     private void OnRefreshButtonClicked()
     {
+        RepopulateList();
+    }
+
+    private async void OnBackClicked()
+    {
+        if (state == LobbyState.Connecting) return; // Button is disabled anyway, belt and braces
+        if (!InLobby) // Browsing: go back to the game mode screen
+        {
+            ui.Q<VisualElement>("online").style.display = DisplayStyle.None;
+            ui.Q<VisualElement>("gamemodes").style.display = DisplayStyle.Flex;
+            return;
+        }
+
+        // In a lobby: leave it and go back to browsing
+        backButton.SetEnabled(false);
+        hostButton.SetEnabled(false);
+        state = LobbyState.Browsing; // Set first, so the disconnects we're about to cause are ignored
+        await Session.LeaveSession(); // Host deletes the lobby, client just leaves
+        await WaitForNetworkShutdown();
+        ResetLobbyUI();
+    }
+
+    // Shuts Netcode down and waits until it's fully stopped (max 5s), so the next Host can start cleanly
+    private static async Task WaitForNetworkShutdown()
+    {
+        var nm = NetworkManager.Singleton;
+        if (nm == null) return;
+        if (nm.IsListening && !nm.ShutdownInProgress) nm.Shutdown();
+        float giveUp = Time.realtimeSinceStartup + 5f;
+        while (nm != null && (nm.ShutdownInProgress || nm.IsListening) && Time.realtimeSinceStartup < giveUp)
+            await Task.Yield();
+    }
+
+    // Puts the online screen back to its browsing state
+    private void ResetLobbyUI()
+    {
+        hostButton.text = "Host";
+        hostButton.clicked -= OnStartGameClicked;
+        hostButton.clicked -= OnHostButtonClicked;
+        hostButton.clicked += OnHostButtonClicked;
+        hostButton.SetEnabled(true);
+        hostButton.visible = true;
+        quickButton.visible = true;
+        refreshButton.visible = true;
+        playerCountText.visible = false;
+        backButton.text = "Back";
+        backButton.SetEnabled(true);
         RepopulateList();
     }
 
@@ -192,16 +272,20 @@ public class OnlineMenuManager : MonoBehaviour
         var nm = NetworkManager.Singleton;
         if (nm == null) return;
 
-        if (nm.IsServer)
+        if (state == LobbyState.Hosting)
         {
             UpdateRoomPlayCount("");
-            return;
+            // Client left: hide Start Game until the lobby is full again
+            if (nm.ConnectedClientsIds.Count < SessionManager.MaxPlayers)
+                hostButton.visible = false;
         }
-
-        // Our own connection dropped, so release the session instead of leaving it stranded.
-        if (clientId == nm.LocalClientId && Session != null)
+        else if (state == LobbyState.Joined)
         {
+            // As a client, any disconnect means we lost the host
+            state = LobbyState.Browsing;
             await Session.LeaveSession();
+            await WaitForNetworkShutdown();
+            ResetLobbyUI();
         }
     }
 
@@ -211,6 +295,7 @@ public class OnlineMenuManager : MonoBehaviour
         hostButton.visible = false;
         refreshButton.visible = false;
         quickButton.visible = false;
+        backButton.text = "Leave";
     }
 
     private void HandleConnected(ulong obj)
@@ -234,6 +319,7 @@ public class OnlineMenuManager : MonoBehaviour
             refreshButton.visible = false;
             quickButton.visible = false;
             playerCountText.visible = true;
+            backButton.text = "Leave";
         }
     }
     private void UpdateRoomPlayCount(String player)

@@ -40,6 +40,8 @@ public class OnlineGameManager : NetworkBehaviour
 
     [SerializeField]
     public GameObject rematchButton;
+    [SerializeField]
+    public GameObject quitButton;
 
     public int maxPlayers = 2;
 
@@ -56,9 +58,15 @@ public class OnlineGameManager : NetworkBehaviour
     private Vector3[] spawnDirection = new Vector3[4];
     
 
+    private NetworkManager netManager; // Cached so we can still unsubscribe after shutdown
+    private bool opponentLeft = false;
+    private bool quitting = false;     // True once we chose to quit, so our own shutdown is ignored
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        netManager = NetworkManager;
+        netManager.OnClientDisconnectCallback += onClientDisconnected;
         if (IsServer)
         {
             freeze.Value = true;
@@ -72,6 +80,7 @@ public class OnlineGameManager : NetworkBehaviour
             score2.OnValueChanged += onScoreChanged;
             timer.OnValueChanged += onTimerChanged;
             rematchButton.GetComponent<Button>().onClick.AddListener(() => StartCoroutine(onRematchClick()));
+            quitButton.GetComponent<Button>().onClick.AddListener(onQuitClick);
 
             updateScoreUI();
 
@@ -111,6 +120,7 @@ public class OnlineGameManager : NetworkBehaviour
     void hideRematchRpc()
     {
         rematchButton.SetActive(false);
+        quitButton.SetActive(false);
     }
     // Sets the players starting positions based on serialized data, should only be called from the server due to networktransforms
     void setStartPositions()
@@ -266,6 +276,50 @@ public class OnlineGameManager : NetworkBehaviour
         rematchButton.GetComponent<Image>().color = Color.white;
         rematchButton.GetComponentInChildren<TextMeshProUGUI>().text = "Rematch";
         rematchButton.SetActive(true);
+        quitButton.SetActive(true);
+    }
+
+    public override void OnDestroy()
+    {
+        if (netManager != null) netManager.OnClientDisconnectCallback -= onClientDisconnected;
+        base.OnDestroy();
+    }
+
+    // Host: fires when the client drops. Client: fires when the connection to the host drops.
+    void onClientDisconnected(ulong clientId)
+    {
+        if (quitting || opponentLeft) return;
+        if (netManager.IsServer && clientId == netManager.LocalClientId) return;
+        opponentLeft = true;
+
+        if (IsServer && IsSpawned)
+        {
+            freeze.Value = true;    // Stops movement and trail spawning
+            rematchAllowed = false; // Stops the countdown restarting
+        }
+
+        StopAllCoroutines(); // Ends the "Waiting..." rematch animation
+        textCountdown.text = IsServer ? "Opponent left" : "Host left";
+        textCountdown.enabled = true;
+        rematchButton.SetActive(false);
+        quitButton.SetActive(true);
+        quitButton.GetComponent<Button>().interactable = true;
+    }
+
+    void onQuitClick()
+    {
+        quitting = true;
+        quitButton.GetComponent<Button>().interactable = false; // Stop double clicks
+        if (SessionManager.Instance != null)
+        {
+            SessionManager.Instance.QuitToMenu();
+        }
+        else
+        {
+            // Scene was started directly in the editor without going through the Menu
+            NetworkManager.Singleton.Shutdown();
+            SceneManager.LoadScene("Menu");
+        }
     }
     void updateScoreUI()
     {

@@ -67,7 +67,7 @@ public class PlayerSquare : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
+        //Debug.Log(collision);
         int player;
         if (isP1) player = 1; else player = 2;
         if (collision.tag == "Obstacle")

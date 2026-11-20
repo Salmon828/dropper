@@ -11,6 +11,7 @@ public class Bot : MonoBehaviour
     public float consecSwitchTime = 0.2f;
 
     public Manager manager;
+    public bool freeze = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,11 +22,13 @@ public class Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (freeze) return;
         gameObject.transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
+        if (freeze) return;
         if (Physics2D.CircleCast(transform.position, 0.3f, direction, Random.Range(0.5f, 3.0f), layerMask))
         {
             //Debug.Log("Object in front");
