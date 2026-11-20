@@ -27,6 +27,12 @@ public class OnlineMenuManager : MonoBehaviour
     private Button hostButton, quickButton, refreshButton;
     private Label playerCountText;
     private Button backButton;
+    private Label statusText;
+    private IVisualElementScheduledItem hideStatus;
+    private IVisualElementScheduledItem autoRefresh;
+    private bool refreshing;
+    private float nextAutoRefresh;
+    private bool wasVisible;
     private enum LobbyState { Browsing, Connecting, Hosting, Joined }
     private LobbyState state = LobbyState.Browsing;
     private bool InLobby => state == LobbyState.Hosting || state == LobbyState.Joined;
@@ -53,6 +59,11 @@ public class OnlineMenuManager : MonoBehaviour
         quickButton.clicked += OnQuickButtonClicked;
         refreshButton.clicked += OnRefreshButtonClicked;
         backButton = ui.Q<Button>("OnlineBack");
+        statusText = ui.Q<Label>("StatusText");
+
+        // Checks once a second, refreshes every 5s (well under the service's rate limit)
+        autoRefresh?.Pause();
+        autoRefresh = ui.schedule.Execute(AutoRefreshTick).Every(1000);
         backButton.clicked += OnBackClicked;
 
         // Uses the template uxml to create each row.
@@ -131,28 +142,88 @@ public class OnlineMenuManager : MonoBehaviour
         quickButton.clicked -= OnQuickButtonClicked;
         refreshButton.clicked -= OnRefreshButtonClicked;
         backButton.clicked -= OnBackClicked;
+        autoRefresh?.Pause();
 
         UnbindEvents();
     }
 
+    private void AutoRefreshTick()
+    {
+        bool visible = ui.Q<VisualElement>("online").resolvedStyle.display == DisplayStyle.Flex;
+        bool justOpened = visible && !wasVisible;
+        wasVisible = visible;
+        if (!visible || state != LobbyState.Browsing || refreshing) return;
+        if (justOpened || Time.realtimeSinceStartup >= nextAutoRefresh) RepopulateList();
+    }
+
     public async void RepopulateList()
     {
+        if (refreshing) return;
+        refreshing = true;
+        nextAutoRefresh = Time.realtimeSinceStartup + 5f;
         try
         { 
-            // Old selection may point at a lobby that no longer exists
-            lobbyList.ClearSelection();
-            selectedID = null;
-            quickButton.text = "Quick Join";
-
             var queryOptions = new QuerySessionsOptions(); // Used in the future for specific filters
             listResults = await MultiplayerService.Instance.QuerySessionsAsync(queryOptions);
             lobbyList.itemsSource = (System.Collections.IList)listResults.Sessions;
             lobbyList.RefreshItems();
+
+            // Keep the selection if that lobby still exists, otherwise clear it
+            int index = -1;
+            for (int i = 0; i < listResults.Sessions.Count; i++)
+                if (listResults.Sessions[i].Id == selectedID) { index = i; break; }
+            if (index >= 0)
+            {
+                lobbyList.SetSelectionWithoutNotify(new[] { index });
+            }
+            else
+            {
+                lobbyList.ClearSelection();
+                selectedID = null;
+                quickButton.text = "Quick Join";
+            }
         }
         catch (Exception e)
         {
             Debug.LogException(e);
+            ShowStatus("Couldn't load lobbies", true);
         }
+        finally
+        {
+            refreshing = false;
+        }
+    }
+
+    // Shows a message under the lobby list for a few seconds
+    private void ShowStatus(string message, bool isError = false)
+    {
+        statusText.text = message;
+        statusText.style.color = isError ? new Color(1f, 0.35f, 0.35f) : Color.white;
+        statusText.style.display = DisplayStyle.Flex;
+        hideStatus?.Pause();
+        hideStatus = statusText.schedule.Execute(() => statusText.style.display = DisplayStyle.None).StartingIn(4000);
+    }
+
+    // Turns a service exception into something a player can understand
+    private static string FriendlyError(Exception e, string fallback)
+    {
+        if (e is SessionException se)
+        {
+            switch (se.Error)
+            {
+                case SessionError.SessionNotFound:
+                case SessionError.SessionDeleted:
+                    return "That lobby no longer exists";
+                case SessionError.RateLimitExceeded:
+                    return "Too many requests, wait a moment";
+                case SessionError.NotAuthorized:
+                    return "Not signed in to online services";
+            }
+            string msg = se.Message.ToLowerInvariant();
+            if (msg.Contains("not found")) return "That lobby no longer exists";
+            if (msg.Contains("full")) return "That lobby is full";
+        }
+        return fallback;
     }
 
     // Greys out the online buttons while a host/join request is in flight
@@ -167,6 +238,7 @@ public class OnlineMenuManager : MonoBehaviour
     private async void OnHostButtonClicked()
     {
         if (state != LobbyState.Browsing) return;
+        if (!Session.IsSignedIn) { ShowStatus("Not connected to online services", true); return; }
         state = LobbyState.Connecting;
         SetButtonsEnabled(false);
         try
@@ -176,6 +248,7 @@ public class OnlineMenuManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogException(e);
+            ShowStatus(FriendlyError(e, "Couldn't create lobby"), true);
         }
         state = Session.ActiveSession != null ? LobbyState.Hosting : LobbyState.Browsing;
         SetButtonsEnabled(true);
@@ -194,24 +267,28 @@ public class OnlineMenuManager : MonoBehaviour
     // This button has two functions
     private async void OnQuickButtonClicked()
     {
-        // Join room functionality
-        if (selectedID != null && state == LobbyState.Browsing)
+        // Selected lobby: join it. Nothing selected: quick join any open lobby, or host one.
+        if (state != LobbyState.Browsing) return;
+        if (!Session.IsSignedIn) { ShowStatus("Not connected to online services", true); return; }
+        bool quick = selectedID == null;
+        state = LobbyState.Connecting;
+        SetButtonsEnabled(false);
+        try
         {
-            state = LobbyState.Connecting;
-            SetButtonsEnabled(false);
-            try
-            {
-               await Session.JoinSessionWithId(selectedID);
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-            }
-            state = Session.ActiveSession != null ? LobbyState.Joined : LobbyState.Browsing;
-            SetButtonsEnabled(true);
-            if (state == LobbyState.Browsing) RepopulateList(); // Join failed (e.g. lobby gone): refresh so it disappears
-            BindEvents();
+            if (quick) await Session.QuickJoinOrHost();
+            else await Session.JoinSessionWithId(selectedID);
         }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            ShowStatus(FriendlyError(e, quick ? "Couldn't find a game" : "Couldn't join lobby"), true);
+        }
+        var s = Session.ActiveSession;
+        state = s == null ? LobbyState.Browsing : s.IsHost ? LobbyState.Hosting : LobbyState.Joined;
+        SetButtonsEnabled(true);
+        if (state == LobbyState.Browsing) RepopulateList(); // Join failed (e.g. lobby gone): refresh so it disappears
+        else if (quick && state == LobbyState.Hosting) ShowStatus("No open lobbies, created one for you");
+        BindEvents();
     }
 
     private void OnRefreshButtonClicked()
@@ -286,6 +363,7 @@ public class OnlineMenuManager : MonoBehaviour
             await Session.LeaveSession();
             await WaitForNetworkShutdown();
             ResetLobbyUI();
+            ShowStatus("Host left the lobby");
         }
     }
 

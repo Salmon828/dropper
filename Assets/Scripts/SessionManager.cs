@@ -17,6 +17,11 @@ public class SessionManager : MonoBehaviour
 
     public ISession ActiveSession { get; private set; }
 
+    // False if Unity Services or anonymous sign-in failed at startup
+    public bool IsSignedIn =>
+        UnityServices.State == ServicesInitializationState.Initialized &&
+        AuthenticationService.Instance.IsSignedIn;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -55,28 +60,26 @@ public class SessionManager : MonoBehaviour
         }
     }
 
+    private static SessionOptions NewSessionOptions() =>
+        new SessionOptions { MaxPlayers = MaxPlayers }.WithRelayNetwork();
+
     public async Task StartSessionAsHost()
     {
-        var options = new SessionOptions
-        {
-            MaxPlayers = MaxPlayers
-
-        }.WithRelayNetwork();
-
-        ActiveSession = await MultiplayerService.Instance.CreateSessionAsync(options);
+        ActiveSession = await MultiplayerService.Instance.CreateSessionAsync(NewSessionOptions());
         Debug.Log($"Session {ActiveSession.Id} created! Join code: {ActiveSession.Code}");
+    }
+
+    // Joins any open lobby, or hosts a new one if none are found within a few seconds
+    public async Task QuickJoinOrHost()
+    {
+        var quick = new QuickJoinOptions { CreateSession = true, Timeout = TimeSpan.FromSeconds(3) };
+        ActiveSession = await MultiplayerService.Instance.MatchmakeSessionAsync(quick, NewSessionOptions());
     }
 
     public async Task JoinSessionWithId(string id)
     {
-        try
-        {
-            ActiveSession = await MultiplayerService.Instance.JoinSessionByIdAsync(id);
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
+        // Errors are passed up so the menu can tell the player what went wrong
+        ActiveSession = await MultiplayerService.Instance.JoinSessionByIdAsync(id);
     }
 
     // Called when the match starts, so the session drops off the lobby list and can't be joined mid-game.
