@@ -5,19 +5,8 @@ public class Bot : MonoBehaviour
     public Vector3 direction = Vector3.left;
     public float moveSpeed = 50f;
     public LayerMask layerMask;
-    public float xBound = 19f;
-    public float yBound = 10.5f;
-
-    public float consecSwitchTime = 0.2f;
-
     public Manager manager;
     public bool freeze = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-       
-    }
 
     // Update is called once per frame
     void Update()
@@ -31,7 +20,6 @@ public class Bot : MonoBehaviour
         if (freeze) return;
         if (Physics2D.CircleCast(transform.position, 0.3f, direction, Random.Range(0.5f, 3.0f), layerMask))
         {
-            //Debug.Log("Object in front");
             direction = randomVector();
         }
     }
@@ -67,7 +55,6 @@ public class Bot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
         if (collision.tag == "Obstacle")
         {
             direction = Vector3.zero;

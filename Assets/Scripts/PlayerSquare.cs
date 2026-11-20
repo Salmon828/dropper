@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -67,7 +66,6 @@ public class PlayerSquare : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(collision);
         int player;
         if (isP1) player = 1; else player = 2;
         if (collision.tag == "Obstacle")
@@ -80,7 +78,6 @@ public class PlayerSquare : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Player")
         {
             manager.collisonDetection(3);

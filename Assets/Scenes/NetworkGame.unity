@@ -1274,7 +1274,7 @@ MonoBehaviour:
   quitButton: {fileID: 377838764}
   crashParticles: {fileID: 1650638268}
   maxPlayers: 2
-  countDownLen: 3
+  countDownLen: 2
   crashPauseLen: 2
   spawnPositions:
   - {x: -9, y: 0, z: 0}

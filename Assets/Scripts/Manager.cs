@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,7 +30,6 @@ public class Manager : MonoBehaviour
     public TextMeshProUGUI textScore;
     public TextMeshProUGUI textScore2;
 
-    public bool local = false;
     private bool roundOver = false; // Flag to make sure only one player scores per round
 
     [SerializeField]
@@ -46,7 +44,6 @@ public class Manager : MonoBehaviour
         P2 = vsCPU ? P2CPU : P2Human;
         P2Human.SetActive(!vsCPU);
         P2CPU.SetActive(vsCPU);
-        local = !vsCPU;
 
         // Point P2 at this manager in code, so the Inspector reference can't go missing
         if (P2Human.TryGetComponent(out PlayerSquare ps)) ps.manager = this;

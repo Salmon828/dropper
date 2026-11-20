@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -169,7 +167,6 @@ public class OnlineGameManager : NetworkBehaviour
 
     void onRematchChanged(bool oldVal, bool newVal)
     {
-        Debug.Log("p1: " + p1Rematch.Value + " p2: " + p2Rematch);
         if (p1Rematch.Value && p2Rematch.Value)
         {
             rematchAllowed = true;
@@ -266,19 +263,16 @@ public class OnlineGameManager : NetworkBehaviour
         {
             // tie
             winScreen("TIE!");
-            Debug.Log("Both win?");
         }
         else if (score2.Value >= scoreToWin)
         {
             // p1 win
             winScreen("P1 Wins!");
-            Debug.Log("P1 win");
         }
         else if (score.Value >= scoreToWin)
         {
             // p2 win
             winScreen("P2 Wins!");
-            Debug.Log("P2 win");
         }
     }
 
@@ -367,7 +361,7 @@ public class OnlineGameManager : NetworkBehaviour
     void updateCountDownUI()
     {
         if (!IsClient) return;
-        textCountdown.text = timer.Value.ToString("F1");
+        textCountdown.text = (countDownLen - timer.Value).ToString("F1"); // Time remaining
         if(timer.Value > 0)
         {
             textCountdown.enabled = true;

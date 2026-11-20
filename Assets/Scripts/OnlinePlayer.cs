@@ -1,10 +1,6 @@
-using Dropper;
-using NUnit.Framework;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
-using System.Linq;
 
 public class OnlinePlayer : NetworkBehaviour
 {
@@ -25,10 +21,9 @@ public class OnlinePlayer : NetworkBehaviour
     private float sendTimer;
 
     public Rigidbody2D rb;
-    public bool isP1, fired = false;
 
     [SerializeField]
-    private int trailSpawnRate = 1;
+    private float dropRate = 0.3f; // Seconds between trail drops, same as local
     private float trailTimer = 0f;
     [SerializeField]
     private NetworkObject trailPrefab;
@@ -53,7 +48,6 @@ public class OnlinePlayer : NetworkBehaviour
             }
             playerNumber.Value = index;
         }
-        Debug.Log(playerNumber.Value);
         if (manager == null)
             manager = FindAnyObjectByType<OnlineGameManager>();
 
@@ -65,7 +59,6 @@ public class OnlinePlayer : NetworkBehaviour
         // Color handling
         if (IsOwner)
         {
-            //Debug.Log($"{OwnerClientId} read {PlayerPrefs.GetInt("p1R")},{PlayerPrefs.GetInt("p1G")},{PlayerPrefs.GetInt("p1B")}");
             changeColorServerRpc(PlayerColor.Load());
         }
         playerColor.OnValueChanged += ApplyColor;
@@ -132,7 +125,7 @@ public class OnlinePlayer : NetworkBehaviour
             rb.MovePosition(transform.position + newPos);
             trailTimer += Time.deltaTime;
 
-            if (trailTimer > trailSpawnRate)
+            if (trailTimer >= dropRate)
             {
                 trailTimer = 0;
                 Vector3 spawnPos = transform.position;
@@ -177,7 +170,6 @@ public class OnlinePlayer : NetworkBehaviour
         if (!IsServer) return;
         if (manager.freeze.Value) return; // Round already over (matches local: one crash per round)
 
-        Debug.Log("TriggerEnter:" + collision);
         if (collision.tag == "Obstacle")
         {
             int p1 = 0;
@@ -185,7 +177,6 @@ public class OnlinePlayer : NetworkBehaviour
 
             manager.PlayCrashRpc(transform.position, playerColor.Value);
             manager.scoreUpdate(p1);
-            fired = false;
         }
     }
 
@@ -197,7 +188,6 @@ public class OnlinePlayer : NetworkBehaviour
         // Stop collisions happening before the game starts **look into more robust gamestate triggers**
         if (!manager.freeze.Value)
         {
-            Debug.Log("CollisonEnter!! Name:" + collision.collider.name);
 
             if (collision.collider.tag == "Player")
             {
@@ -206,7 +196,6 @@ public class OnlinePlayer : NetworkBehaviour
                 if (collision.collider.TryGetComponent(out OnlinePlayer other))
                     manager.PlayCrashRpc(other.transform.position, other.playerColor.Value);
                 manager.scoreUpdate(2);
-                fired = false;
             }
         }
     }

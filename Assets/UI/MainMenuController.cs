@@ -1,13 +1,10 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
 {
     private VisualElement ui;
-    public InputActionAsset asset;
 
     // Main menu variables
     private VisualElement mainMenu, letterElement;
@@ -180,29 +177,6 @@ public class MainMenuController : MonoBehaviour
         {
             rgbText.text = red.value + ", " + green.value + ", " + blue.value;
             preview.style.backgroundColor = (Color)new Color32((byte)red.value, (byte)green.value, (byte)blue.value, 255);
-        }
-    }
-
-    private IEnumerator EnableAndLoad()
-    {
-        yield return null;
-
-        InputActionMap ui = asset.FindActionMap("UI");
-        InputActionMap player = asset.FindActionMap("Player", true);
-
-        player.Enable();
-        ui.Disable();
-
-        Time.timeScale = 1.0f;
-
-        Debug.Log(player.enabled);
-        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-
-        
-        if (!player.enabled)
-        {
-            player.Enable();
-            Debug.Log(player.enabled);
         }
     }
 }

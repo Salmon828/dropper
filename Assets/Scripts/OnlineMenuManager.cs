@@ -378,7 +378,6 @@ public class OnlineMenuManager : MonoBehaviour
 
     private void HandleConnected(ulong obj)
     {
-        Debug.Log(obj + " Handle Connected called");
         if (NetworkManager.Singleton.IsHost)
         {
             UpdateRoomPlayCount("");
@@ -414,7 +413,6 @@ public class OnlineMenuManager : MonoBehaviour
 
     private void OnSelectionChanged(IEnumerable<object> selected)
     {
-        //Debug.Log($"Selected: {string.Join(", ", selected)}");
         ISessionInfo info = selected.FirstOrDefault() as ISessionInfo;
         // Item deselected
         if (info == null)
