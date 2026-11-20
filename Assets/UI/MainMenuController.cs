@@ -14,9 +14,8 @@ public class MainMenuController : MonoBehaviour
     private Button playButton, optionsButton, quitButton;
 
     // Color menu variables
-    private VisualElement colorMenu, colorDisp;
-    private SliderInt red, green, blue;
-    private Label rgbVals;
+    private VisualElement colorMenu;
+    private ColorPicker p1Picker, p2Picker;
     private Button colorBack;
 
     // Mode select variables
@@ -70,22 +69,8 @@ public class MainMenuController : MonoBehaviour
         colorBack = ui.Q<Button>("colorBack");
         colorBack.clicked += OnColorBackClicked;
 
-        red = ui.Q<SliderInt>("red");
-        green = ui.Q<SliderInt>("green");
-        blue = ui.Q<SliderInt>("blue");
-
-        colorDisp = ui.Q<VisualElement>("colorDisp");
-
-        rgbVals = ui.Q<Label>("rgbValues");
-        red.RegisterValueChangedCallback(v => { rgbVals.text = rgbLabel(v.newValue, green.value, blue.value); 
-            updateColor(v.newValue, green.value, blue.value); 
-        });
-        green.RegisterValueChangedCallback(v => { rgbVals.text = rgbLabel(red.value, v.newValue, blue.value);
-            updateColor(red.value, v.newValue, blue.value);
-        });
-        blue.RegisterValueChangedCallback(v => { rgbVals.text = rgbLabel(red.value, green.value, v.newValue);
-            updateColor(red.value, green.value, v.newValue);
-        });
+        p1Picker = new ColorPicker(ui, "", 1);  // red, green, blue, colorDisp, rgbValues
+        p2Picker = new ColorPicker(ui, "2", 2); // red2, green2, blue2, colorDisp2, rgbValues2
     }
 
     private void OnPlayButtonClicked()
@@ -140,9 +125,8 @@ public class MainMenuController : MonoBehaviour
     {
         showMain();
         colorMenu.style.display = DisplayStyle.None;
-        PlayerPrefs.SetInt("p1R", red.value);
-        PlayerPrefs.SetInt("p1G", green.value);
-        PlayerPrefs.SetInt("p1B", blue.value);
+        p1Picker.Save();
+        p2Picker.Save();
     }
 
     private void hideMain()
@@ -157,16 +141,46 @@ public class MainMenuController : MonoBehaviour
         letterElement.style.display = DisplayStyle.Flex;
     }
 
-    // returns rgb string to set text to 
-    private string rgbLabel (int red, int green, int blue)
+    // Wires three sliders + preview + RGB label to one player's saved colour
+    private class ColorPicker
     {
-        return red + ", " + green +  ", " + blue;
-    }
+        private readonly int player;
+        private readonly SliderInt red, green, blue;
+        private readonly VisualElement preview;
+        private readonly Label rgbText;
 
-    private void updateColor(int red, int green, int blue)
-    {
-        Color c = new Color32((byte)red, (byte)green, (byte)blue, 255);
-        colorDisp.style.backgroundColor = c;
+        public ColorPicker(VisualElement root, string suffix, int player)
+        {
+            this.player = player;
+            red = root.Q<SliderInt>("red" + suffix);
+            green = root.Q<SliderInt>("green" + suffix);
+            blue = root.Q<SliderInt>("blue" + suffix);
+            preview = root.Q<VisualElement>("colorDisp" + suffix);
+            rgbText = root.Q<Label>("rgbValues" + suffix);
+
+            red.RegisterValueChangedCallback(_ => Refresh());
+            green.RegisterValueChangedCallback(_ => Refresh());
+            blue.RegisterValueChangedCallback(_ => Refresh());
+            Load();
+        }
+
+        // Show the saved colour (without firing the callbacks)
+        public void Load()
+        {
+            Color32 saved = PlayerColor.Load(player);
+            red.SetValueWithoutNotify(saved.r);
+            green.SetValueWithoutNotify(saved.g);
+            blue.SetValueWithoutNotify(saved.b);
+            Refresh();
+        }
+
+        public void Save() => PlayerColor.Save(player, red.value, green.value, blue.value);
+
+        private void Refresh()
+        {
+            rgbText.text = red.value + ", " + green.value + ", " + blue.value;
+            preview.style.backgroundColor = (Color)new Color32((byte)red.value, (byte)green.value, (byte)blue.value, 255);
+        }
     }
 
     private IEnumerator EnableAndLoad()

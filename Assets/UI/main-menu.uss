@@ -6,6 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    /* Every element in the menu inherits this font */
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/Pix32.ttf?fileID=12800000&guid=d990ffd30b2c13544a3882ffcdf5a2af&type=3#Pix32");
 }
 
 .menu {

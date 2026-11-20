@@ -66,7 +66,7 @@ public class OnlinePlayer : NetworkBehaviour
         if (IsOwner)
         {
             //Debug.Log($"{OwnerClientId} read {PlayerPrefs.GetInt("p1R")},{PlayerPrefs.GetInt("p1G")},{PlayerPrefs.GetInt("p1B")}");
-            changeColorServerRpc(new Color32((byte)PlayerPrefs.GetInt("p1R"), (byte)PlayerPrefs.GetInt("p1G"), (byte)PlayerPrefs.GetInt("p1B"), 255));
+            changeColorServerRpc(PlayerColor.Load());
         }
         playerColor.OnValueChanged += ApplyColor;
         ApplyColor(playerColor.Value, playerColor.Value);
@@ -166,23 +166,6 @@ public class OnlinePlayer : NetworkBehaviour
         playerColor.Value = newColor;
     }
 
-    private void clearTrails()
-    {
-        if (!IsServer) return;
-
-        var spawnList = NetworkManager.Singleton.SpawnManager.SpawnedObjectsList.ToList();
-        foreach (var t in spawnList)
-        {
-            if(t != null && t.IsSpawned && t.TryGetComponent<SpawnMarker>(out _))
-            { 
-
-                if (t == NetworkObject) continue;
-
-                t.Despawn(true);
-            }
-        }
-    }
-
     // Applys the current color set in the color networkvariable
     private void ApplyColor(Color32 prevColor, Color32 newColor)
     {
@@ -192,6 +175,7 @@ public class OnlinePlayer : NetworkBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!IsServer) return;
+        if (manager.freeze.Value) return; // Round already over (matches local: one crash per round)
 
         Debug.Log("TriggerEnter:" + collision);
         if (collision.tag == "Obstacle")
@@ -199,9 +183,9 @@ public class OnlinePlayer : NetworkBehaviour
             int p1 = 0;
             if (playerNumber.Value == 1) p1 = 1;
 
+            manager.PlayCrashRpc(transform.position, playerColor.Value);
             manager.scoreUpdate(p1);
             fired = false;
-            clearTrails();
         }
     }
 
@@ -217,9 +201,12 @@ public class OnlinePlayer : NetworkBehaviour
 
             if (collision.collider.tag == "Player")
             {
+                // Head-on: both players explode
+                manager.PlayCrashRpc(transform.position, playerColor.Value);
+                if (collision.collider.TryGetComponent(out OnlinePlayer other))
+                    manager.PlayCrashRpc(other.transform.position, other.playerColor.Value);
                 manager.scoreUpdate(2);
                 fired = false;
-                clearTrails();
             }
         }
     }

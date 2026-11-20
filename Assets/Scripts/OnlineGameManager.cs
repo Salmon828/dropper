@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 
 
 // Handles score, gamestate 
@@ -43,11 +44,18 @@ public class OnlineGameManager : NetworkBehaviour
     [SerializeField]
     public GameObject quitButton;
 
+    [SerializeField]
+    private ParticleSystem crashParticles; // Template, copied for each crash
+
     public int maxPlayers = 2;
 
     [SerializeField]
-    private int countDownLen = 3;
+    private int countDownLen = 2;
     private bool countDownHappened = false;
+
+    [SerializeField]
+    private float crashPauseLen = 2f; // Same as local
+    private bool roundResetting = false;
 
 
 
@@ -98,7 +106,7 @@ public class OnlineGameManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        if (ArePlayersSpawned() && !countDownHappened && rematchAllowed)
+        if (ArePlayersSpawned() && !countDownHappened && rematchAllowed && !roundResetting)
         {
             // Players are connected and game is ready to start, **Modify later for lobbies**
 
@@ -229,11 +237,26 @@ public class OnlineGameManager : NetworkBehaviour
 
         freeze.Value = true;
         checkWin();
+        StartCoroutine(ResetRoundAfterPause());
+    }
 
-        // Reset round 
+    // Leave the crash on screen for a moment, then clear the board and start the countdown
+    IEnumerator ResetRoundAfterPause()
+    {
+        roundResetting = true;
+        yield return new WaitForSeconds(crashPauseLen);
+        ClearTrails();
         setStartPositions();
         countDownHappened = false;
+        roundResetting = false;
+    }
 
+    // Moved here from OnlinePlayer, so trails stay visible during the pause
+    private void ClearTrails()
+    {
+        foreach (var t in NetworkManager.SpawnManager.SpawnedObjectsList.ToList())
+            if (t != null && t.IsSpawned && t.TryGetComponent<SpawnMarker>(out _))
+                t.Despawn(true);
     }
 
     private void checkWin()
@@ -304,6 +327,19 @@ public class OnlineGameManager : NetworkBehaviour
         rematchButton.SetActive(false);
         quitButton.SetActive(true);
         quitButton.GetComponent<Button>().interactable = true;
+    }
+
+    // Server calls this on a crash; every client plays the explosion
+    [Rpc(SendTo.ClientsAndHost)]
+    public void PlayCrashRpc(Vector3 position, Color32 color)
+    {
+        if (crashParticles == null) return;
+        // A copy per crash, so a head-on crash shows both explosions
+        var p = Instantiate(crashParticles, position, Quaternion.identity);
+        var main = p.main;
+        main.startColor = (Color)color;
+        p.Play();
+        Destroy(p.gameObject, main.duration + main.startLifetime.constantMax);
     }
 
     void onQuitClick()

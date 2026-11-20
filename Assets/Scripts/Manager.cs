@@ -56,15 +56,18 @@ public class Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (!local)
+        // P1 uses the colour picked in Options, in both Local and Vs CPU
+        P1Color = PlayerColor.Load();
+        P1.GetComponent<SpriteRenderer>().color = P1Color;
+        if (vsCPU)
         {
-            P1Color = new Color32((byte)PlayerPrefs.GetInt("p1R"), (byte)PlayerPrefs.GetInt("p1G"), (byte)PlayerPrefs.GetInt("p1B"), 255);
-            P1.GetComponent<SpriteRenderer>().color = P1Color;
-        } else
-        {
-            P1Color = P1.GetComponent<SpriteRenderer>().color;
+            P2Color = P2.GetComponent<SpriteRenderer>().color; // Bot keeps its own colour
         }
-        P2Color = P2.GetComponent<SpriteRenderer>().color;
+        else
+        {
+            P2Color = PlayerColor.Load(2);
+            P2.GetComponent<SpriteRenderer>().color = P2Color;
+        }
         P1Script = P1.GetComponent<PlayerSquare>();
         P2Script = P2.GetComponent<PlayerSquare>();
         P2Bot = P2.GetComponent<Bot>();
@@ -185,10 +188,12 @@ public class Manager : MonoBehaviour
 
     private void playCrashParticles(Vector3 position, Color color)
     {
-        part.transform.position = position;
-        var main = part.main;
+        // A copy per crash, so a head-on crash shows both explosions
+        var p = Instantiate(part, position, Quaternion.identity);
+        var main = p.main;
         main.startColor = color;
-        part.Play();
+        p.Play();
+        Destroy(p.gameObject, main.duration + main.startLifetime.constantMax);
     }
     private void updateScoreText()
     {
